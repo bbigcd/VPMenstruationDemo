@@ -15,6 +15,25 @@
 		2A3A337C1E0129D1005A2E43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A337A1E0129D1005A2E43 /* LaunchScreen.storyboard */; };
 		2A3A33871E0129D2005A2E43 /* VPMenstruationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33861E0129D2005A2E43 /* VPMenstruationDemoTests.m */; };
 		2A3A33921E0129D2005A2E43 /* VPMenstruationDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33911E0129D2005A2E43 /* VPMenstruationDemoUITests.m */; };
+		2A3A33A61E0131A1005A2E43 /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */; };
+		2A3A33A91E0131BA005A2E43 /* PergnantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33A81E0131BA005A2E43 /* PergnantViewController.m */; };
+		2A3A33AC1E0131CA005A2E43 /* PregnancyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33AB1E0131CA005A2E43 /* PregnancyViewController.m */; };
+		2A3A33CD1E013364005A2E43 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33AE1E013364005A2E43 /* FSCalendar+Deprecated.m */; };
+		2A3A33CE1E013364005A2E43 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33B01E013364005A2E43 /* FSCalendar.m */; };
+		2A3A33CF1E013364005A2E43 /* FSCalendarAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33B21E013364005A2E43 /* FSCalendarAnimator.m */; };
+		2A3A33D01E013364005A2E43 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33B41E013364005A2E43 /* FSCalendarAppearance.m */; };
+		2A3A33D11E013364005A2E43 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33B61E013364005A2E43 /* FSCalendarCalculator.m */; };
+		2A3A33D21E013364005A2E43 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33B81E013364005A2E43 /* FSCalendarCell.m */; };
+		2A3A33D31E013364005A2E43 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33BA1E013364005A2E43 /* FSCalendarCollectionView.m */; };
+		2A3A33D41E013364005A2E43 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33BC1E013364005A2E43 /* FSCalendarCollectionViewLayout.m */; };
+		2A3A33D51E013364005A2E43 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33BE1E013364005A2E43 /* FSCalendarConstants.m */; };
+		2A3A33D61E013364005A2E43 /* FSCalendarDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33C01E013364005A2E43 /* FSCalendarDelegateProxy.m */; };
+		2A3A33D71E013364005A2E43 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33C31E013364005A2E43 /* FSCalendarExtensions.m */; };
+		2A3A33D81E013364005A2E43 /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33C51E013364005A2E43 /* FSCalendarHeaderView.m */; };
+		2A3A33D91E013364005A2E43 /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33C71E013364005A2E43 /* FSCalendarScopeHandle.m */; };
+		2A3A33DA1E013364005A2E43 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33C91E013364005A2E43 /* FSCalendarStickyHeader.m */; };
+		2A3A33DB1E013364005A2E43 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33CB1E013364005A2E43 /* FSCalendarWeekdayView.m */; };
+		2A3A33DC1E013364005A2E43 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A33CC1E013364005A2E43 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +70,43 @@
 		2A3A338D1E0129D2005A2E43 /* VPMenstruationDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VPMenstruationDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3A33911E0129D2005A2E43 /* VPMenstruationDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VPMenstruationDemoUITests.m; sourceTree = "<group>"; };
 		2A3A33931E0129D2005A2E43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A3A33A41E0131A1005A2E43 /* RMShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShowViewController.h; sourceTree = "<group>"; };
+		2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShowViewController.m; sourceTree = "<group>"; };
+		2A3A33A71E0131BA005A2E43 /* PergnantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PergnantViewController.h; sourceTree = "<group>"; };
+		2A3A33A81E0131BA005A2E43 /* PergnantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PergnantViewController.m; sourceTree = "<group>"; };
+		2A3A33AA1E0131CA005A2E43 /* PregnancyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyViewController.h; sourceTree = "<group>"; };
+		2A3A33AB1E0131CA005A2E43 /* PregnancyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyViewController.m; sourceTree = "<group>"; };
+		2A3A33AE1E013364005A2E43 /* FSCalendar+Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Deprecated.m"; sourceTree = "<group>"; };
+		2A3A33AF1E013364005A2E43 /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
+		2A3A33B01E013364005A2E43 /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
+		2A3A33B11E013364005A2E43 /* FSCalendarAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAnimator.h; sourceTree = "<group>"; };
+		2A3A33B21E013364005A2E43 /* FSCalendarAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAnimator.m; sourceTree = "<group>"; };
+		2A3A33B31E013364005A2E43 /* FSCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAppearance.h; sourceTree = "<group>"; };
+		2A3A33B41E013364005A2E43 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
+		2A3A33B51E013364005A2E43 /* FSCalendarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCalculator.h; sourceTree = "<group>"; };
+		2A3A33B61E013364005A2E43 /* FSCalendarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCalculator.m; sourceTree = "<group>"; };
+		2A3A33B71E013364005A2E43 /* FSCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCell.h; sourceTree = "<group>"; };
+		2A3A33B81E013364005A2E43 /* FSCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCell.m; sourceTree = "<group>"; };
+		2A3A33B91E013364005A2E43 /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionView.h; sourceTree = "<group>"; };
+		2A3A33BA1E013364005A2E43 /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionView.m; sourceTree = "<group>"; };
+		2A3A33BB1E013364005A2E43 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
+		2A3A33BC1E013364005A2E43 /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
+		2A3A33BD1E013364005A2E43 /* FSCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarConstants.h; sourceTree = "<group>"; };
+		2A3A33BE1E013364005A2E43 /* FSCalendarConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarConstants.m; sourceTree = "<group>"; };
+		2A3A33BF1E013364005A2E43 /* FSCalendarDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegateProxy.h; sourceTree = "<group>"; };
+		2A3A33C01E013364005A2E43 /* FSCalendarDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegateProxy.m; sourceTree = "<group>"; };
+		2A3A33C11E013364005A2E43 /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
+		2A3A33C21E013364005A2E43 /* FSCalendarExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarExtensions.h; sourceTree = "<group>"; };
+		2A3A33C31E013364005A2E43 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarExtensions.m; sourceTree = "<group>"; };
+		2A3A33C41E013364005A2E43 /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarHeaderView.h; sourceTree = "<group>"; };
+		2A3A33C51E013364005A2E43 /* FSCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarHeaderView.m; sourceTree = "<group>"; };
+		2A3A33C61E013364005A2E43 /* FSCalendarScopeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarScopeHandle.h; sourceTree = "<group>"; };
+		2A3A33C71E013364005A2E43 /* FSCalendarScopeHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarScopeHandle.m; sourceTree = "<group>"; };
+		2A3A33C81E013364005A2E43 /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarStickyHeader.h; sourceTree = "<group>"; };
+		2A3A33C91E013364005A2E43 /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarStickyHeader.m; sourceTree = "<group>"; };
+		2A3A33CA1E013364005A2E43 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
+		2A3A33CB1E013364005A2E43 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		2A3A33CC1E013364005A2E43 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +161,10 @@
 				2A3A33701E0129D0005A2E43 /* AppDelegate.m */,
 				2A3A33721E0129D1005A2E43 /* ViewController.h */,
 				2A3A33731E0129D1005A2E43 /* ViewController.m */,
-				2A3A33751E0129D1005A2E43 /* Main.storyboard */,
-				2A3A33781E0129D1005A2E43 /* Assets.xcassets */,
-				2A3A337A1E0129D1005A2E43 /* LaunchScreen.storyboard */,
-				2A3A337D1E0129D2005A2E43 /* Info.plist */,
+				2A3A33A31E012AC2005A2E43 /* Record、Mother */,
+				2A3A33A01E012AAD005A2E43 /* Pergnant */,
+				2A3A33A11E012AAD005A2E43 /* Pregnancy */,
+				2A3A33AD1E013364005A2E43 /* FSCalendar */,
 				2A3A336C1E0129D0005A2E43 /* Supporting Files */,
 			);
 			path = VPMenstruationDemo;
@@ -117,6 +173,10 @@
 		2A3A336C1E0129D0005A2E43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2A3A33751E0129D1005A2E43 /* Main.storyboard */,
+				2A3A33781E0129D1005A2E43 /* Assets.xcassets */,
+				2A3A337A1E0129D1005A2E43 /* LaunchScreen.storyboard */,
+				2A3A337D1E0129D2005A2E43 /* Info.plist */,
 				2A3A336D1E0129D0005A2E43 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +198,71 @@
 				2A3A33931E0129D2005A2E43 /* Info.plist */,
 			);
 			path = VPMenstruationDemoUITests;
+			sourceTree = "<group>";
+		};
+		2A3A33A01E012AAD005A2E43 /* Pergnant */ = {
+			isa = PBXGroup;
+			children = (
+				2A3A33A71E0131BA005A2E43 /* PergnantViewController.h */,
+				2A3A33A81E0131BA005A2E43 /* PergnantViewController.m */,
+			);
+			path = Pergnant;
+			sourceTree = "<group>";
+		};
+		2A3A33A11E012AAD005A2E43 /* Pregnancy */ = {
+			isa = PBXGroup;
+			children = (
+				2A3A33AA1E0131CA005A2E43 /* PregnancyViewController.h */,
+				2A3A33AB1E0131CA005A2E43 /* PregnancyViewController.m */,
+			);
+			path = Pregnancy;
+			sourceTree = "<group>";
+		};
+		2A3A33A31E012AC2005A2E43 /* Record、Mother */ = {
+			isa = PBXGroup;
+			children = (
+				2A3A33A41E0131A1005A2E43 /* RMShowViewController.h */,
+				2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */,
+			);
+			path = "Record、Mother";
+			sourceTree = "<group>";
+		};
+		2A3A33AD1E013364005A2E43 /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				2A3A33AE1E013364005A2E43 /* FSCalendar+Deprecated.m */,
+				2A3A33AF1E013364005A2E43 /* FSCalendar.h */,
+				2A3A33B01E013364005A2E43 /* FSCalendar.m */,
+				2A3A33B11E013364005A2E43 /* FSCalendarAnimator.h */,
+				2A3A33B21E013364005A2E43 /* FSCalendarAnimator.m */,
+				2A3A33B31E013364005A2E43 /* FSCalendarAppearance.h */,
+				2A3A33B41E013364005A2E43 /* FSCalendarAppearance.m */,
+				2A3A33B51E013364005A2E43 /* FSCalendarCalculator.h */,
+				2A3A33B61E013364005A2E43 /* FSCalendarCalculator.m */,
+				2A3A33B71E013364005A2E43 /* FSCalendarCell.h */,
+				2A3A33B81E013364005A2E43 /* FSCalendarCell.m */,
+				2A3A33B91E013364005A2E43 /* FSCalendarCollectionView.h */,
+				2A3A33BA1E013364005A2E43 /* FSCalendarCollectionView.m */,
+				2A3A33BB1E013364005A2E43 /* FSCalendarCollectionViewLayout.h */,
+				2A3A33BC1E013364005A2E43 /* FSCalendarCollectionViewLayout.m */,
+				2A3A33BD1E013364005A2E43 /* FSCalendarConstants.h */,
+				2A3A33BE1E013364005A2E43 /* FSCalendarConstants.m */,
+				2A3A33BF1E013364005A2E43 /* FSCalendarDelegateProxy.h */,
+				2A3A33C01E013364005A2E43 /* FSCalendarDelegateProxy.m */,
+				2A3A33C11E013364005A2E43 /* FSCalendarDynamicHeader.h */,
+				2A3A33C21E013364005A2E43 /* FSCalendarExtensions.h */,
+				2A3A33C31E013364005A2E43 /* FSCalendarExtensions.m */,
+				2A3A33C41E013364005A2E43 /* FSCalendarHeaderView.h */,
+				2A3A33C51E013364005A2E43 /* FSCalendarHeaderView.m */,
+				2A3A33C61E013364005A2E43 /* FSCalendarScopeHandle.h */,
+				2A3A33C71E013364005A2E43 /* FSCalendarScopeHandle.m */,
+				2A3A33C81E013364005A2E43 /* FSCalendarStickyHeader.h */,
+				2A3A33C91E013364005A2E43 /* FSCalendarStickyHeader.m */,
+				2A3A33CA1E013364005A2E43 /* FSCalendarWeekdayView.h */,
+				2A3A33CB1E013364005A2E43 /* FSCalendarWeekdayView.m */,
+				2A3A33CC1E013364005A2E43 /* Info.plist */,
+			);
+			path = FSCalendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3A33DC1E013364005A2E43 /* Info.plist in Resources */,
 				2A3A337C1E0129D1005A2E43 /* LaunchScreen.storyboard in Resources */,
 				2A3A33791E0129D1005A2E43 /* Assets.xcassets in Resources */,
 				2A3A33771E0129D1005A2E43 /* Main.storyboard in Resources */,
@@ -276,9 +402,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3A33D11E013364005A2E43 /* FSCalendarCalculator.m in Sources */,
+				2A3A33D51E013364005A2E43 /* FSCalendarConstants.m in Sources */,
+				2A3A33CF1E013364005A2E43 /* FSCalendarAnimator.m in Sources */,
+				2A3A33D41E013364005A2E43 /* FSCalendarCollectionViewLayout.m in Sources */,
+				2A3A33D61E013364005A2E43 /* FSCalendarDelegateProxy.m in Sources */,
+				2A3A33AC1E0131CA005A2E43 /* PregnancyViewController.m in Sources */,
+				2A3A33DA1E013364005A2E43 /* FSCalendarStickyHeader.m in Sources */,
+				2A3A33D31E013364005A2E43 /* FSCalendarCollectionView.m in Sources */,
+				2A3A33A61E0131A1005A2E43 /* RMShowViewController.m in Sources */,
+				2A3A33CE1E013364005A2E43 /* FSCalendar.m in Sources */,
+				2A3A33D01E013364005A2E43 /* FSCalendarAppearance.m in Sources */,
+				2A3A33D21E013364005A2E43 /* FSCalendarCell.m in Sources */,
+				2A3A33D71E013364005A2E43 /* FSCalendarExtensions.m in Sources */,
+				2A3A33DB1E013364005A2E43 /* FSCalendarWeekdayView.m in Sources */,
 				2A3A33741E0129D1005A2E43 /* ViewController.m in Sources */,
+				2A3A33D91E013364005A2E43 /* FSCalendarScopeHandle.m in Sources */,
 				2A3A33711E0129D0005A2E43 /* AppDelegate.m in Sources */,
+				2A3A33CD1E013364005A2E43 /* FSCalendar+Deprecated.m in Sources */,
 				2A3A336E1E0129D0005A2E43 /* main.m in Sources */,
+				2A3A33D81E013364005A2E43 /* FSCalendarHeaderView.m in Sources */,
+				2A3A33A91E0131BA005A2E43 /* PergnantViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7E2J7CUZTM;
 				INFOPLIST_FILE = VPMenstruationDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bbigcd.VPMenstruationDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,6 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7E2J7CUZTM;
 				INFOPLIST_FILE = VPMenstruationDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bbigcd.VPMenstruationDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
