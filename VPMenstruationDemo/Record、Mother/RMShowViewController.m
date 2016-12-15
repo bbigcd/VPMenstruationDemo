@@ -89,10 +89,14 @@
     // 选中排卵日
     [_calendar selectDate:[_dateFormatter dateFromString:_datesOfOvulationDay[0]]];
     
+    // 选中当前日期
+    [_calendar selectDate:[NSDate date]];
+    
     // 选中月经期
-    for (NSString *string in _datesOfMenstrualPeriod) {
-        [_calendar selectDate:[_dateFormatter dateFromString:string]];
-    }
+//    for (NSString *string in _datesOfMenstrualPeriod) {
+//        [_calendar selectDate:[_dateFormatter dateFromString:string]];
+//    }
+    
     
     // 周的显示字体形式 S M T W T F S
     _calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
@@ -194,8 +198,11 @@
     
     // 当天的颜色
     if ([[_dateFormatter stringFromDate:[NSDate date]] isEqualToString:dateString]) {
-        diyCell.selectionLayer.fillColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00].CGColor;
-        diyCell.titleLabel.textColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00];
+//        diyCell.selectionLayer.fillColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00].CGColor;
+//        diyCell.titleLabel.textColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00];
+        diyCell.titleLabel.textColor = [UIColor yellowColor];
+        diyCell.todayLayer.hidden = NO;
+        diyCell.testLayer.hidden = NO;
     }
     
     // 排卵日
@@ -204,7 +211,7 @@
 //        diyCell.backgroundColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00];
 //        CGFloat radius = MIN(diyCell.fs_height, diyCell.fs_width);
 //        diyCell.layer.cornerRadius = radius / 2;
-        
+        diyCell.testLayer.hidden = NO;
 //        diyCell.titleLabel.backgroundColor = [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
 //        diyCell.titleLabel.frame = CGRectMake(0, 0, 20, 20);
 //        diyCell.titleLabel.center = CGPointMake(diyCell.fs_width / 2, 15);

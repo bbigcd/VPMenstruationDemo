@@ -22,6 +22,10 @@ typedef NS_ENUM(NSUInteger, SelectionType) {
 // 选中的layer
 @property (weak, nonatomic) CAShapeLayer *selectionLayer;
 
+// 当天的layer
+@property (weak, nonatomic) CAShapeLayer *todayLayer;
+@property (weak, nonatomic) CAShapeLayer *testLayer;
+
 // 选中日期的位置
 @property (assign, nonatomic) SelectionType selectionType;
 
