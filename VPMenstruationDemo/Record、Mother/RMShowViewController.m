@@ -44,15 +44,28 @@
     FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 64, view.frame.size.width, 300)];
     calendar.dataSource = self;
     calendar.delegate = self;
+    calendar.scrollEnabled = NO;
     calendar.allowsMultipleSelection = YES; // 开启多选中
+    calendar.appearance.headerMinimumDissolvedAlpha = 0.0f;
+    calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
+    calendar.appearance.headerTitleColor = [UIColor blackColor];
+    // 周的显示字体形式 S M T W T F S
+    calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
+    // 非本月日期隐藏
+//    _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
+    calendar.appearance.weekdayTextColor = [UIColor colorWithHue:0.00
+                                                      saturation:0.32
+                                                      brightness:0.93
+                                                           alpha:1.00];
    
     calendar.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:calendar];
-    self.calendar = calendar;
+    
     
 //    calendar.appearance.eventSelectionColor = [UIColor whiteColor];
 //    calendar.appearance.eventOffset = CGPointMake(0, 0);
     [calendar registerClass:[CustomCalendarCell class] forCellReuseIdentifier:@"cell"];
+    self.calendar = calendar;
 }
 
 - (void)viewDidLoad {
@@ -83,60 +96,6 @@
     [self setupCalendar];
 }
 
-// 设置
-- (void)setupCalendar{
-    
-    // 选中排卵日
-    [_calendar selectDate:[_dateFormatter dateFromString:_datesOfOvulationDay[0]]];
-    
-    // 选中当前日期
-    [_calendar selectDate:[NSDate date]];
-    
-    // 选中月经期
-//    for (NSString *string in _datesOfMenstrualPeriod) {
-//        [_calendar selectDate:[_dateFormatter dateFromString:string]];
-//    }
-    
-    
-    // 周的显示字体形式 S M T W T F S
-    _calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
-    
-    // 非本月日期隐藏
-//    _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
-    
-    // 是否可以点击
-//    _calendar.allowsSelection = NO;
-    
-    // 是否可以滑动
-    _calendar.scrollEnabled = NO;
-    
-    // 头的颜色
-    _calendar.appearance.headerTitleColor = [UIColor blackColor];
-    
-    // 周的字体颜色
-    _calendar.appearance.weekdayTextColor = [UIColor colorWithHue:0.00
-                                                       saturation:0.32
-                                                       brightness:0.93
-                                                            alpha:1.00];
-    // 上下月标签透明度
-    _calendar.appearance.headerMinimumDissolvedAlpha = 0.0f;
-    
-    // 当天背景色
-    _calendar.appearance.todayColor = [UIColor colorWithHue:0.52
-                                                 saturation:0.70
-                                                 brightness:0.86
-                                                      alpha:1.00];
-    // 设置语言
-    _calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
-    
-    // 选中日期背景色
-//    _calendar.appearance.selectionColor = [UIColor colorWithHue:0.75
-//                                                     saturation:0.80
-//                                                     brightness:0.71
-//                                                          alpha:1.00];
-    
-    
-}
 
 // 数据源设置
 - (void)setupNSArraysDataSource{
@@ -185,39 +144,73 @@
                                        @"2017-01-14"];
 }
 
+// 设置
+- (void)setupCalendar{
+    
+    // 选中排卵日
+    [_calendar selectDate:[_dateFormatter dateFromString:_datesOfOvulationDay[0]]];
+    
+    // 选中当前日期
+//    [_calendar selectDate:[NSDate date]];
+    
+    // 选中月经期
+//    for (NSString *string in _datesOfMenstrualPeriod) {
+//        [_calendar selectDate:[_dateFormatter dateFromString:string]];
+//    }
+    
+    
+    
+    // 是否可以点击
+//    _calendar.allowsSelection = NO;
+    
+    // 当天背景色
+    _calendar.appearance.todayColor = [UIColor colorWithHue:0.52
+                                                 saturation:0.70
+                                                 brightness:0.86
+                                                      alpha:1.00];
+    
+    
+    // 选中日期背景色
+    _calendar.appearance.selectionColor = [UIColor colorWithHue:0.75
+                                                     saturation:0.80
+                                                     brightness:0.71
+                                                          alpha:1.00];
+
+    
+}
+
+
 #pragma mark - -- 设置颜色 --
 - (void)setupCellBGColorForCell:(CustomCalendarCell *)diyCell Date:(NSDate *)date{
     NSString *dateString = [self.dateFormatter stringFromDate:date];
     // 月经期显示颜色
     if ([_datesOfMenstrualPeriod containsObject:dateString]) {
 //        diyCell.selectionLayer.fillColor = [UIColor colorWithHue:0.98 saturation:0.19 brightness:0.99 alpha:1.00].CGColor;
-        diyCell.selectionLayer.fillColor = nil;
+//        diyCell.selectionLayer.fillColor = nil;
 //        diyCell.titleLabel.backgroundColor = [UIColor colorWithHue:0.98 saturation:0.19 brightness:0.99 alpha:1.00];
-        diyCell.titleLabel.textColor = [UIColor colorWithHue:0.98 saturation:0.19 brightness:0.99 alpha:1.00];
+//        diyCell.titleLabel.textColor = [UIColor colorWithHue:0.98 saturation:0.19 brightness:0.99 alpha:1.00];
     }
     
     // 当天的颜色
     if ([[_dateFormatter stringFromDate:[NSDate date]] isEqualToString:dateString]) {
 //        diyCell.selectionLayer.fillColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00].CGColor;
 //        diyCell.titleLabel.textColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00];
-        diyCell.titleLabel.textColor = [UIColor yellowColor];
+//        diyCell.titleLabel.textColor = [UIColor yellowColor];
         diyCell.todayLayer.hidden = NO;
-        diyCell.testLayer.hidden = NO;
     }
     
     // 排卵日
     if ([_datesOfOvulationDay containsObject:dateString]) {
-        diyCell.selectionLayer.fillColor = nil;
+//        diyCell.selectionLayer.fillColor = nil;
 //        diyCell.backgroundColor = [UIColor colorWithHue:0.52 saturation:0.70 brightness:0.86 alpha:1.00];
 //        CGFloat radius = MIN(diyCell.fs_height, diyCell.fs_width);
 //        diyCell.layer.cornerRadius = radius / 2;
-        diyCell.testLayer.hidden = NO;
+        diyCell.ovulationDayLayer.hidden = NO;
 //        diyCell.titleLabel.backgroundColor = [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
 //        diyCell.titleLabel.frame = CGRectMake(0, 0, 20, 20);
 //        diyCell.titleLabel.center = CGPointMake(diyCell.fs_width / 2, 15);
 //        diyCell.titleLabel.layer.cornerRadius = 10;
 //        diyCell.titleLabel.layer.masksToBounds = YES;
-        diyCell.titleLabel.textColor = [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
 //        diyCell.titleLabel.textColor = [UIColor whiteColor];
     }
 
@@ -295,6 +288,9 @@
     if ([_datesOfOvulation containsObject:dateString]) {
         return [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
     }
+    if ([_datesOfOvulationDay containsObject:dateString]) {
+        return [UIColor whiteColor];
+    }
     return nil;
 }
 
@@ -327,10 +323,10 @@
 
 - (void)configureVisibleCells
 {
-    [self.calendar.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDate *date = [self.calendar dateForCell:obj];
-        FSCalendarMonthPosition position = [self.calendar monthPositionForCell:obj];
-        [self configureCell:obj forDate:date atMonthPosition:position];
+    [self.calendar.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull cell, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDate *date = [self.calendar dateForCell:cell];
+        FSCalendarMonthPosition position = [self.calendar monthPositionForCell:cell];
+        [self configureCell:cell forDate:date atMonthPosition:position];
     }];
 }
 
@@ -346,38 +342,43 @@
         diyCell.eventIndicator.hidden = NO;
         
         SelectionType selectionType = SelectionTypeNone;
+        // 当前日期在选中日期里
         if ([self.calendar.selectedDates containsObject:date])
         {
+            // 当前日期的前一天和后一天
             NSDate *previousDate = [self.gregorian dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:date options:0];
             NSDate *nextDate = [self.gregorian dateByAddingUnit:NSCalendarUnitDay value:1 toDate:date options:0];
             
-            if ([self.calendar.selectedDates containsObject:date]) {
-                if ([self.calendar.selectedDates containsObject:previousDate]
-                    && [self.calendar.selectedDates containsObject:nextDate]) {
-                    selectionType = SelectionTypeMiddle;
-                }
-                else if ([self.calendar.selectedDates containsObject:previousDate]
-                         && [self.calendar.selectedDates containsObject:date])
-                {
-                    selectionType = SelectionTypeRightBorder;
-                }
-                else if ([self.calendar.selectedDates containsObject:nextDate])
-                {
-                    selectionType = SelectionTypeLeftBorder;
-                }
-                else
-                {
-                    selectionType = SelectionTypeSingle;
-                }
+            // 当前日期和前一天、后一天也在选中日期里面 当前日期的选中类型为 SelectionTypeMiddle
+            if ([self.calendar.selectedDates containsObject:previousDate]
+                && [self.calendar.selectedDates containsObject:nextDate]) {
+                selectionType = SelectionTypeMiddle;
+            }
+            // 当前日期和前一天
+            else if ([self.calendar.selectedDates containsObject:previousDate])
+            {
+                selectionType = SelectionTypeRightBorder;
+            }
+            // 当前日期和后一天
+            else if ([self.calendar.selectedDates containsObject:nextDate])
+            {
+                selectionType = SelectionTypeLeftBorder;
+            }
+            // 只有当前日期
+            else
+            {
+                selectionType = SelectionTypeSingle;
             }
         }
-        else
+        else // 当前日期不在选中日期中
         {
             selectionType = SelectionTypeNone;
         }
         
         if (selectionType == SelectionTypeNone) {
             diyCell.selectionLayer.hidden = YES;
+//            diyCell.todayLayer.hidden = YES;
+            diyCell.ovulationDayLayer.hidden = YES;
             return;
         }
         
@@ -389,12 +390,18 @@
     else if (monthPosition == FSCalendarMonthPositionNext
              || monthPosition == FSCalendarMonthPositionPrevious)
     {
+        diyCell.todayLayer.hidden = YES;// 今天不在上个月和下个月中，隐藏todayLayer
         diyCell.selectionLayer.hidden = YES;
+        diyCell.ovulationDayLayer.hidden = YES;
         diyCell.eventIndicator.hidden = YES; // Hide default event indicator
         if ([self.calendar.selectedDates containsObject:date])
         {
             // Prevent placeholders from changing text color
-            diyCell.titleLabel.textColor = self.calendar.appearance.titlePlaceholderColor;
+//            diyCell.titleLabel.textColor = self.calendar.appearance.titlePlaceholderColor;
+            // 上月下月的日期中在选中日期里面
+            diyCell.selectionLayer.hidden = NO;
+            // 排卵日在上下月中，显示出来
+            diyCell.ovulationDayLayer.hidden = NO;
         }
     }
 }
