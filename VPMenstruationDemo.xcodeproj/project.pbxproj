@@ -35,6 +35,7 @@
 		2A3A33DB1E013364005A2E43 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33CB1E013364005A2E43 /* FSCalendarWeekdayView.m */; };
 		2A3A33DC1E013364005A2E43 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A33CC1E013364005A2E43 /* Info.plist */; };
 		2A3A33DF1E0284FC005A2E43 /* CustomCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */; };
+		2A3A33E21E03F1A5005A2E43 /* FllowersTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		2A3A33CC1E013364005A2E43 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A3A33DD1E0284FC005A2E43 /* CustomCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalendarCell.h; sourceTree = "<group>"; };
 		2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalendarCell.m; sourceTree = "<group>"; };
+		2A3A33E01E03F1A4005A2E43 /* FllowersTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FllowersTableHeaderView.h; sourceTree = "<group>"; };
+		2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FllowersTableHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,8 @@
 				2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */,
 				2A3A33DD1E0284FC005A2E43 /* CustomCalendarCell.h */,
 				2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */,
+				2A3A33E01E03F1A4005A2E43 /* FllowersTableHeaderView.h */,
+				2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */,
 			);
 			path = "Record、Mother";
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				2A3A33CF1E013364005A2E43 /* FSCalendarAnimator.m in Sources */,
 				2A3A33D41E013364005A2E43 /* FSCalendarCollectionViewLayout.m in Sources */,
 				2A3A33D61E013364005A2E43 /* FSCalendarDelegateProxy.m in Sources */,
+				2A3A33E21E03F1A5005A2E43 /* FllowersTableHeaderView.m in Sources */,
 				2A3A33AC1E0131CA005A2E43 /* PregnancyViewController.m in Sources */,
 				2A3A33DA1E013364005A2E43 /* FSCalendarStickyHeader.m in Sources */,
 				2A3A33D31E013364005A2E43 /* FSCalendarCollectionView.m in Sources */,
