@@ -40,6 +40,8 @@
 		2AD573F51E051AD000949938 /* SetPeriodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573F31E051AD000949938 /* SetPeriodTableViewCell.m */; };
 		2AD573F61E051AD000949938 /* SetPeriodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */; };
 		2AD573F91E051C1300949938 /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573F81E051C1300949938 /* RMShowViewController.m */; };
+		2AD574001E0536CD00949938 /* FlowAndPainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573FE1E0536CD00949938 /* FlowAndPainTableViewCell.m */; };
+		2AD574011E0536CD00949938 /* FlowAndPainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD573FF1E0536CD00949938 /* FlowAndPainTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,9 @@
 		2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetPeriodTableViewCell.xib; sourceTree = "<group>"; };
 		2AD573F71E051C1300949938 /* RMShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShowViewController.h; sourceTree = "<group>"; };
 		2AD573F81E051C1300949938 /* RMShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShowViewController.m; sourceTree = "<group>"; };
+		2AD573FD1E0536CD00949938 /* FlowAndPainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowAndPainTableViewCell.h; sourceTree = "<group>"; };
+		2AD573FE1E0536CD00949938 /* FlowAndPainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowAndPainTableViewCell.m; sourceTree = "<group>"; };
+		2AD573FF1E0536CD00949938 /* FlowAndPainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlowAndPainTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +307,9 @@
 				2AD573F21E051AD000949938 /* SetPeriodTableViewCell.h */,
 				2AD573F31E051AD000949938 /* SetPeriodTableViewCell.m */,
 				2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */,
+				2AD573FD1E0536CD00949938 /* FlowAndPainTableViewCell.h */,
+				2AD573FE1E0536CD00949938 /* FlowAndPainTableViewCell.m */,
+				2AD573FF1E0536CD00949938 /* FlowAndPainTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,6 +434,7 @@
 			files = (
 				2A3A33E41E04C6D9005A2E43 /* DINCond-Medium.otf in Resources */,
 				2AD573F61E051AD000949938 /* SetPeriodTableViewCell.xib in Resources */,
+				2AD574011E0536CD00949938 /* FlowAndPainTableViewCell.xib in Resources */,
 				2A3A33DC1E013364005A2E43 /* Info.plist in Resources */,
 				2A3A337C1E0129D1005A2E43 /* LaunchScreen.storyboard in Resources */,
 				2A3A33791E0129D1005A2E43 /* Assets.xcassets in Resources */,
@@ -472,6 +481,7 @@
 				2A3A33D71E013364005A2E43 /* FSCalendarExtensions.m in Sources */,
 				2A3A33DB1E013364005A2E43 /* FSCalendarWeekdayView.m in Sources */,
 				2A3A33741E0129D1005A2E43 /* ViewController.m in Sources */,
+				2AD574001E0536CD00949938 /* FlowAndPainTableViewCell.m in Sources */,
 				2A3A33D91E013364005A2E43 /* FSCalendarScopeHandle.m in Sources */,
 				2A3A33711E0129D0005A2E43 /* AppDelegate.m in Sources */,
 				2A3A33CD1E013364005A2E43 /* FSCalendar+Deprecated.m in Sources */,

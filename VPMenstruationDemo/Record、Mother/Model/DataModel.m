@@ -49,6 +49,13 @@
     self.datesOfNextForecastPeriod = @[@"2017-01-07", @"2017-01-08", @"2017-01-09",
                                        @"2017-01-10", @"2017-01-11", @"2017-01-12",
                                        @"2017-01-13", @"2017-01-14"];
+    
+    self.iconImageArray = @[@"period-begin_end",@"period-begin_end",@"prepare",
+                            @"flow",@"pain",@"notes"];
+    
+    self.titleLabelTextArray = @[@"Period begin",@"Period end",@"Had sex",
+                                 @"Flow",@"Pain",@"Notes"];
+    
 }
 
 @end

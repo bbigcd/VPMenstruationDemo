@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,22 +19,46 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prepare" translatesAutoresizingMaskIntoConstraints="NO" id="6qc-oX-q4N">
-                        <rect key="frame" x="30" y="10" width="22" height="22"/>
+                        <rect key="frame" x="11" y="11" width="22" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="22" id="C9E-Mm-YRE"/>
-                            <constraint firstAttribute="height" constant="22" id="rrV-Ke-LYu"/>
+                            <constraint firstAttribute="width" constant="22" id="LvU-DO-rsm"/>
+                            <constraint firstAttribute="height" constant="22" id="YHJ-uo-yVC"/>
                         </constraints>
                     </imageView>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="on" offImage="off" translatesAutoresizingMaskIntoConstraints="NO" id="gEw-OG-Lr8">
+                        <rect key="frame" x="260" y="6" width="51" height="31"/>
+                        <color key="onTintColor" red="0.93561321496963501" green="0.60386192798614502" blue="0.60467857122421265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgc-EK-WXN">
+                        <rect key="frame" x="44" y="11" width="120" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="n81-Kl-kvr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="6qc-oX-q4N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="22" id="ee4-EE-1Pp"/>
-                    <constraint firstItem="6qc-oX-q4N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hC9-i3-Ocv"/>
+                    <constraint firstItem="6qc-oX-q4N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="2tX-KZ-wlT"/>
+                    <constraint firstAttribute="trailing" secondItem="gEw-OG-Lr8" secondAttribute="trailing" constant="11" id="Ile-Nh-8V0"/>
+                    <constraint firstItem="Qgc-EK-WXN" firstAttribute="leading" secondItem="6qc-oX-q4N" secondAttribute="trailing" constant="11" id="JyH-Av-7Km"/>
+                    <constraint firstItem="Qgc-EK-WXN" firstAttribute="centerY" secondItem="6qc-oX-q4N" secondAttribute="centerY" id="LeV-1g-UbE"/>
+                    <constraint firstItem="gEw-OG-Lr8" firstAttribute="centerY" secondItem="6qc-oX-q4N" secondAttribute="centerY" id="Qxq-dh-X8h"/>
+                    <constraint firstItem="6qc-oX-q4N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fhS-86-ipT"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-152" y="43"/>
+            <connections>
+                <outlet property="iconImageView" destination="6qc-oX-q4N" id="yJH-e2-KVd"/>
+                <outlet property="switchAction" destination="gEw-OG-Lr8" id="8ND-Tm-lzn"/>
+                <outlet property="titleLabel" destination="Qgc-EK-WXN" id="tmk-fN-Pnf"/>
+            </connections>
+            <point key="canvasLocation" x="-664" y="15"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="off" width="55" height="25"/>
+        <image name="on" width="55" height="25"/>
         <image name="prepare" width="21" height="21"/>
     </resources>
 </document>

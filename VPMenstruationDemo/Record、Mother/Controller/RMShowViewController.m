@@ -51,9 +51,10 @@ static NSString *const ID = @"SetPeriodTableViewCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.rowHeight = 40.0f;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.showsVerticalScrollIndicator = NO;
-        [_tableView registerClass:[SetPeriodTableViewCell class] forCellReuseIdentifier:ID];
+        [_tableView registerNib:[UINib nibWithNibName:@"SetPeriodTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:ID];
         [self.view addSubview:_tableView];
         
     }
@@ -111,7 +112,7 @@ static NSString *const ID = @"SetPeriodTableViewCell";
         // 周的显示字体形式 S M T W T F S
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
         // 非本月日期隐藏
-        //    _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
+//        _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
         _calendar.appearance.weekdayTextColor = [UIColor colorWithHue:0.00
                                                            saturation:0.32
                                                            brightness:0.93
@@ -120,8 +121,8 @@ static NSString *const ID = @"SetPeriodTableViewCell";
         _calendar.backgroundColor = [UIColor clearColor];
         
         
-        //    calendar.appearance.eventSelectionColor = [UIColor whiteColor];
-        //    calendar.appearance.eventOffset = CGPointMake(0, 0);
+//        calendar.appearance.eventSelectionColor = [UIColor whiteColor];
+//        calendar.appearance.eventOffset = CGPointMake(0, 0);
         [_calendar registerClass:[CustomCalendarCell class] forCellReuseIdentifier:@"cell"];
         
     }
@@ -165,7 +166,7 @@ static NSString *const ID = @"SetPeriodTableViewCell";
     [self setupCalendar];
     
     
-//    [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 
@@ -398,7 +399,7 @@ static NSString *const ID = @"SetPeriodTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return _model.iconImageArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -420,8 +421,16 @@ static NSString *const ID = @"SetPeriodTableViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SetPeriodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    
+    SetPeriodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+    cell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
+    cell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
+    if (indexPath.row == 5) {
+        cell.switchAction.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    if (indexPath.row == 3 || indexPath.row == 4) {
+        cell.switchAction.hidden = YES;
+    }
     return cell;
 }
 
@@ -432,8 +441,8 @@ static NSString *const ID = @"SetPeriodTableViewCell";
 #pragma mark - -- UIScrollViewDelegate --
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    _pageControl.currentPage = scrollView.contentOffset.x / Width;
+    BOOL oneOrTwo = scrollView.contentOffset.x / Width;
+    _pageControl.currentPage = oneOrTwo;
 }
 
 @end

@@ -1,19 +1,18 @@
 //
-//  SetPeriodTableViewCell.m
+//  FlowAndPainTableViewCell.m
 //  VPMenstruationDemo
 //
 //  Created by bbigcd on 2016/12/17.
 //  Copyright © 2016年 bbigcd. All rights reserved.
 //
 
-#import "SetPeriodTableViewCell.h"
+#import "FlowAndPainTableViewCell.h"
 
-@implementation SetPeriodTableViewCell
+@implementation FlowAndPainTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -10,4 +10,8 @@
 
 @interface SetPeriodTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *switchAction;
+
 @end
