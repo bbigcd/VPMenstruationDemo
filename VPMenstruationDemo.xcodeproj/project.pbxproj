@@ -15,7 +15,6 @@
 		2A3A337C1E0129D1005A2E43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A337A1E0129D1005A2E43 /* LaunchScreen.storyboard */; };
 		2A3A33871E0129D2005A2E43 /* VPMenstruationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33861E0129D2005A2E43 /* VPMenstruationDemoTests.m */; };
 		2A3A33921E0129D2005A2E43 /* VPMenstruationDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33911E0129D2005A2E43 /* VPMenstruationDemoUITests.m */; };
-		2A3A33A61E0131A1005A2E43 /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */; };
 		2A3A33A91E0131BA005A2E43 /* PergnantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33A81E0131BA005A2E43 /* PergnantViewController.m */; };
 		2A3A33AC1E0131CA005A2E43 /* PregnancyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33AB1E0131CA005A2E43 /* PregnancyViewController.m */; };
 		2A3A33CD1E013364005A2E43 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33AE1E013364005A2E43 /* FSCalendar+Deprecated.m */; };
@@ -36,6 +35,11 @@
 		2A3A33DC1E013364005A2E43 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A33CC1E013364005A2E43 /* Info.plist */; };
 		2A3A33DF1E0284FC005A2E43 /* CustomCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */; };
 		2A3A33E21E03F1A5005A2E43 /* FllowersTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */; };
+		2A3A33E41E04C6D9005A2E43 /* DINCond-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A33E31E04C6D9005A2E43 /* DINCond-Medium.otf */; };
+		2AD573EF1E0519A800949938 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573EE1E0519A800949938 /* DataModel.m */; };
+		2AD573F51E051AD000949938 /* SetPeriodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573F31E051AD000949938 /* SetPeriodTableViewCell.m */; };
+		2AD573F61E051AD000949938 /* SetPeriodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */; };
+		2AD573F91E051C1300949938 /* RMShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573F81E051C1300949938 /* RMShowViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +76,6 @@
 		2A3A338D1E0129D2005A2E43 /* VPMenstruationDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VPMenstruationDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3A33911E0129D2005A2E43 /* VPMenstruationDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VPMenstruationDemoUITests.m; sourceTree = "<group>"; };
 		2A3A33931E0129D2005A2E43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A3A33A41E0131A1005A2E43 /* RMShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShowViewController.h; sourceTree = "<group>"; };
-		2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShowViewController.m; sourceTree = "<group>"; };
 		2A3A33A71E0131BA005A2E43 /* PergnantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PergnantViewController.h; sourceTree = "<group>"; };
 		2A3A33A81E0131BA005A2E43 /* PergnantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PergnantViewController.m; sourceTree = "<group>"; };
 		2A3A33AA1E0131CA005A2E43 /* PregnancyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyViewController.h; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 		2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalendarCell.m; sourceTree = "<group>"; };
 		2A3A33E01E03F1A4005A2E43 /* FllowersTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FllowersTableHeaderView.h; sourceTree = "<group>"; };
 		2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FllowersTableHeaderView.m; sourceTree = "<group>"; };
+		2A3A33E31E04C6D9005A2E43 /* DINCond-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINCond-Medium.otf"; sourceTree = "<group>"; };
+		2AD573ED1E0519A800949938 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		2AD573EE1E0519A800949938 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		2AD573F21E051AD000949938 /* SetPeriodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPeriodTableViewCell.h; sourceTree = "<group>"; };
+		2AD573F31E051AD000949938 /* SetPeriodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPeriodTableViewCell.m; sourceTree = "<group>"; };
+		2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetPeriodTableViewCell.xib; sourceTree = "<group>"; };
+		2AD573F71E051C1300949938 /* RMShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShowViewController.h; sourceTree = "<group>"; };
+		2AD573F81E051C1300949938 /* RMShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShowViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +177,7 @@
 				2A3A33701E0129D0005A2E43 /* AppDelegate.m */,
 				2A3A33721E0129D1005A2E43 /* ViewController.h */,
 				2A3A33731E0129D1005A2E43 /* ViewController.m */,
+				2A3A33E31E04C6D9005A2E43 /* DINCond-Medium.otf */,
 				2A3A33A31E012AC2005A2E43 /* Record、Mother */,
 				2A3A33A01E012AAD005A2E43 /* Pergnant */,
 				2A3A33A11E012AAD005A2E43 /* Pregnancy */,
@@ -227,12 +238,9 @@
 		2A3A33A31E012AC2005A2E43 /* Record、Mother */ = {
 			isa = PBXGroup;
 			children = (
-				2A3A33A41E0131A1005A2E43 /* RMShowViewController.h */,
-				2A3A33A51E0131A1005A2E43 /* RMShowViewController.m */,
-				2A3A33DD1E0284FC005A2E43 /* CustomCalendarCell.h */,
-				2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */,
-				2A3A33E01E03F1A4005A2E43 /* FllowersTableHeaderView.h */,
-				2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */,
+				2AD573F11E0519C100949938 /* Controller */,
+				2AD573F01E0519B500949938 /* View */,
+				2AD573EC1E0519A800949938 /* Model */,
 			);
 			path = "Record、Mother";
 			sourceTree = "<group>";
@@ -273,6 +281,38 @@
 				2A3A33CC1E013364005A2E43 /* Info.plist */,
 			);
 			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		2AD573EC1E0519A800949938 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2AD573ED1E0519A800949938 /* DataModel.h */,
+				2AD573EE1E0519A800949938 /* DataModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2AD573F01E0519B500949938 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A3A33DD1E0284FC005A2E43 /* CustomCalendarCell.h */,
+				2A3A33DE1E0284FC005A2E43 /* CustomCalendarCell.m */,
+				2A3A33E01E03F1A4005A2E43 /* FllowersTableHeaderView.h */,
+				2A3A33E11E03F1A4005A2E43 /* FllowersTableHeaderView.m */,
+				2AD573F21E051AD000949938 /* SetPeriodTableViewCell.h */,
+				2AD573F31E051AD000949938 /* SetPeriodTableViewCell.m */,
+				2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2AD573F11E0519C100949938 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2AD573F71E051C1300949938 /* RMShowViewController.h */,
+				2AD573F81E051C1300949938 /* RMShowViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +424,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3A33E41E04C6D9005A2E43 /* DINCond-Medium.otf in Resources */,
+				2AD573F61E051AD000949938 /* SetPeriodTableViewCell.xib in Resources */,
 				2A3A33DC1E013364005A2E43 /* Info.plist in Resources */,
 				2A3A337C1E0129D1005A2E43 /* LaunchScreen.storyboard in Resources */,
 				2A3A33791E0129D1005A2E43 /* Assets.xcassets in Resources */,
@@ -417,12 +459,13 @@
 				2A3A33DF1E0284FC005A2E43 /* CustomCalendarCell.m in Sources */,
 				2A3A33CF1E013364005A2E43 /* FSCalendarAnimator.m in Sources */,
 				2A3A33D41E013364005A2E43 /* FSCalendarCollectionViewLayout.m in Sources */,
+				2AD573F91E051C1300949938 /* RMShowViewController.m in Sources */,
 				2A3A33D61E013364005A2E43 /* FSCalendarDelegateProxy.m in Sources */,
 				2A3A33E21E03F1A5005A2E43 /* FllowersTableHeaderView.m in Sources */,
 				2A3A33AC1E0131CA005A2E43 /* PregnancyViewController.m in Sources */,
 				2A3A33DA1E013364005A2E43 /* FSCalendarStickyHeader.m in Sources */,
 				2A3A33D31E013364005A2E43 /* FSCalendarCollectionView.m in Sources */,
-				2A3A33A61E0131A1005A2E43 /* RMShowViewController.m in Sources */,
+				2AD573F51E051AD000949938 /* SetPeriodTableViewCell.m in Sources */,
 				2A3A33CE1E013364005A2E43 /* FSCalendar.m in Sources */,
 				2A3A33D01E013364005A2E43 /* FSCalendarAppearance.m in Sources */,
 				2A3A33D21E013364005A2E43 /* FSCalendarCell.m in Sources */,
@@ -432,6 +475,7 @@
 				2A3A33D91E013364005A2E43 /* FSCalendarScopeHandle.m in Sources */,
 				2A3A33711E0129D0005A2E43 /* AppDelegate.m in Sources */,
 				2A3A33CD1E013364005A2E43 /* FSCalendar+Deprecated.m in Sources */,
+				2AD573EF1E0519A800949938 /* DataModel.m in Sources */,
 				2A3A336E1E0129D0005A2E43 /* main.m in Sources */,
 				2A3A33D81E013364005A2E43 /* FSCalendarHeaderView.m in Sources */,
 				2A3A33A91E0131BA005A2E43 /* PergnantViewController.m in Sources */,
@@ -672,6 +716,7 @@
 				2A3A33981E0129D2005A2E43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A3A33991E0129D2005A2E43 /* Build configuration list for PBXNativeTarget "VPMenstruationDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -680,6 +725,7 @@
 				2A3A339B1E0129D2005A2E43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A3A339C1E0129D2005A2E43 /* Build configuration list for PBXNativeTarget "VPMenstruationDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -688,6 +734,7 @@
 				2A3A339E1E0129D2005A2E43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
