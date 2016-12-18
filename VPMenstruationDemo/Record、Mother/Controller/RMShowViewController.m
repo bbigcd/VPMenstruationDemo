@@ -13,6 +13,7 @@
 #import "FllowersTableHeaderView.h"
 #import "DataModel.h"
 #import "SetPeriodTableViewCell.h"
+#import "FlowAndPainTableViewCell.h"
 
 @interface RMShowViewController ()<
 FSCalendarDataSource,
@@ -43,7 +44,8 @@ UIScrollViewDelegate>
 #define Width [UIScreen mainScreen].bounds.size.width
 #define Height [UIScreen mainScreen].bounds.size.height
 
-static NSString *const ID = @"SetPeriodTableViewCell";
+static NSString *const SetPeriodTableViewCellID = @"SetPeriodTableViewCell";
+static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 
 - (UITableView *)tableView{
     if (!_tableView) {
@@ -54,7 +56,8 @@ static NSString *const ID = @"SetPeriodTableViewCell";
         _tableView.rowHeight = 40.0f;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.showsVerticalScrollIndicator = NO;
-        [_tableView registerNib:[UINib nibWithNibName:@"SetPeriodTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:ID];
+        [_tableView registerNib:[UINib nibWithNibName:@"SetPeriodTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:SetPeriodTableViewCellID];
+        [_tableView registerNib:[UINib nibWithNibName:@"FlowAndPainTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:FlowAndPainTableViewCellID];
         [self.view addSubview:_tableView];
         
     }
@@ -421,17 +424,30 @@ static NSString *const ID = @"SetPeriodTableViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SetPeriodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-    cell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
-    cell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
-    if (indexPath.row == 5) {
-        cell.switchAction.hidden = YES;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if (indexPath.row == 3 || indexPath.row == 4)
+    {
+        FlowAndPainTableViewCell *FCell = [tableView dequeueReusableCellWithIdentifier:FlowAndPainTableViewCellID forIndexPath:indexPath];
+        FCell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
+        FCell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
+        if (indexPath.row == 3) {
+            [FCell setBtnsNormalImage:@"flow" selectedImage:@"flow_click"];
+        }else{
+            [FCell setBtnsNormalImage:@"pain" selectedImage:@"pain-_click"];
+        }
+        return FCell;
     }
-    if (indexPath.row == 3 || indexPath.row == 4) {
-        cell.switchAction.hidden = YES;
+    else
+    {
+        SetPeriodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SetPeriodTableViewCellID forIndexPath:indexPath];
+        cell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
+        cell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
+        if (indexPath.row == 5) {
+            cell.switchAction.hidden = YES;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        return cell;
     }
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
