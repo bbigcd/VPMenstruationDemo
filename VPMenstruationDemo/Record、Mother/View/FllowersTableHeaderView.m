@@ -28,22 +28,29 @@
 }
 
 - (void)viewLayout{
-    _fllowersImageView.frame = CGRectMake(0, 0, 240, 240);
-    _fllowersImageView.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     
-    // 这里用autolayout布局简直能飞起
-    _dayLabel.frame = CGRectMake(0, 0, 80, 60);
-    _dayLabel.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-
-    _describeLabel.frame = CGRectMake(0, 0, CGRectGetWidth(_fllowersImageView.frame), 40);
-    _describeLabel.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 45);
+    [_fllowersImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(240, 240));
+    }];
     
-    _stateLabel.frame = CGRectMake(0, 0, CGRectGetWidth(_fllowersImageView.frame), 40);
-    _stateLabel.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 45);
+    [_dayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(80, 60));
+    }];
+    
+    [_describeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(_dayLabel.mas_top);
+        make.centerX.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(240, 40));
+    }];
+    
+    [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_dayLabel.mas_bottom);
+        make.centerX.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(240, 40));
+    }];
 }
-
-
-#pragma mark - -- lazy loda --
 
 - (UIImageView *)fllowersImageView{
     if (!_fllowersImageView) {
@@ -86,7 +93,6 @@
 @end
 
 
-
 @implementation CalendarBottmLabelView
 
 static NSInteger const LabelFontSize = 10;
@@ -101,71 +107,125 @@ static NSInteger const LabelFontSize = 10;
 }
 
 - (void)setupViews{
-    [self addSubview:self.label1];
-    [self addSubview:self.label2];
-    [self addSubview:self.label3];
-    [self addSubview:self.label4];
+    [self addSubview:self.view1];
+    [self addSubview:self.view2];
+    [self addSubview:self.view3];
+    [self addSubview:self.view4];
     [self viewLayout];
 }
 
 - (void)viewLayout{
-    CGFloat width = CGRectGetWidth(self.frame) / 4;
-    CGFloat height = CGRectGetHeight(self.frame);
-    _label1.frame = CGRectMake(width * 0, 0, width, height);
-    _label2.frame = CGRectMake(width * 1, 0, width, height);
-    _label3.frame = CGRectMake(width * 2, 0, width, height);
-    _label4.frame = CGRectMake(width * 3, 0, width, height);
+    
+    [_view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@10);
+        make.centerY.equalTo(self);
+    }];
+    [_view2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_view1.mas_right).equalTo(@4);
+        make.centerY.equalTo(self);
+    }];
+    [_view3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_view2.mas_right).equalTo(@4);
+        make.centerY.equalTo(self);
+    }];
+    [_view4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_view3.mas_right).equalTo(@4);
+        make.right.lessThanOrEqualTo(@(-10));
+        make.centerY.equalTo(self);
+    }];
+    
 }
 
-- (UILabel *)label1{
-    if (!_label1) {
-        _label1 = [[UILabel alloc] init];
-        _label1.font = [UIFont systemFontOfSize:LabelFontSize];
-        _label1.textAlignment = NSTextAlignmentCenter;
-        _label1.text = @"Menstrual period";
-        _label1.adjustsFontSizeToFitWidth = YES;
-        _label1.textColor = [UIColor colorWithRed:0.99 green:0.80 blue:0.82 alpha:1.00];
+- (StateImageViewAndLabelView *)view1{
+    if (!_view1) {
+        _view1 = [[StateImageViewAndLabelView alloc] init];
+        _view1.label.textColor = [UIColor colorWithHexString:@"ffcdd2"];
+        _view1.imageView.image = [UIImage imageNamed:@"Menstrual_period"];
     }
-    return _label1;
+    return _view1;
 }
 
-- (UILabel *)label2{
-    if (!_label2) {
-        _label2 = [[UILabel alloc] init];
-        _label2.font = [UIFont systemFontOfSize:LabelFontSize];
-        _label2.textAlignment = NSTextAlignmentCenter;
-        _label2.text = @"Forecast period";
-        _label2.adjustsFontSizeToFitWidth = YES;
-        _label2.textColor = [UIColor redColor];
+- (StateImageViewAndLabelView *)view2{
+    if (!_view2) {
+        _view2 = [[StateImageViewAndLabelView alloc] init];
+        _view2.label.textColor = [UIColor colorWithHexString:@"e57373"];
+        _view2.imageView.image = [UIImage imageNamed:@"Menstrual_period"];
     }
-    return _label2;
+    return _view2;
 }
 
-- (UILabel *)label3{
-    if (!_label3) {
-        _label3 = [[UILabel alloc] init];
-        _label3.font = [UIFont systemFontOfSize:LabelFontSize];
-        _label3.textAlignment = NSTextAlignmentCenter;
-        _label3.text = @"Ovulation";
-        _label3.adjustsFontSizeToFitWidth = YES;
-        _label3.textColor = [UIColor colorWithRed:0.51 green:0.30 blue:0.76 alpha:1.00];
+- (StateImageViewAndLabelView *)view3{
+    if (!_view3) {
+        _view3 = [[StateImageViewAndLabelView alloc] init];
+        _view3.label.textColor = [UIColor colorWithHexString:@"7e57c2"];
+        _view3.imageView.image = [UIImage imageNamed:@"Ovulation"];
     }
-    return _label3;
+    return _view3;
 }
 
-- (UILabel *)label4{
-    if (!_label4) {
-        _label4 = [[UILabel alloc] init];
-        _label4.font = [UIFont systemFontOfSize:LabelFontSize];
-        _label4.textAlignment = NSTextAlignmentCenter;
-        _label4.text = @"Ovulation day";
-        _label4.adjustsFontSizeToFitWidth = YES;
-        _label4.textColor = [UIColor colorWithRed:0.43 green:0.15 blue:0.71 alpha:1.00];
+- (StateImageViewAndLabelView *)view4{
+    if (!_view4) {
+        _view4 = [[StateImageViewAndLabelView alloc] init];
+        _view4.label.textColor = [UIColor colorWithHexString:@"673ab7"];
+        _view4.imageView.image = [UIImage imageNamed:@"Ovulation_day"];
     }
-    return _label4;
+    return _view4;
 }
 
 @end
+
+
+@implementation StateImageViewAndLabelView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setupViews];
+    }
+    return self;
+}
+
+- (void)setupViews{
+    [self addSubview:self.imageView];
+    [self addSubview:self.label];
+    
+    [self viewLayout];
+}
+
+- (void)viewLayout{
+    
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self);
+        make.centerY.equalTo(self);
+        make.size.mas_offset(CGSizeMake(5, 5));
+    }];
+    
+    [_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(_imageView.mas_right).equalTo(@2);
+        make.top.right.bottom.equalTo(self);
+    }];
+}
+
+- (UILabel *)label{
+    if (!_label) {
+        _label = [[UILabel alloc] init];
+        _label.font = [UIFont systemFontOfSize:LabelFontSize];
+        _label.textAlignment = NSTextAlignmentLeft;
+        _label.adjustsFontSizeToFitWidth = YES;
+    }
+    return _label;
+}
+
+- (UIImageView *)imageView{
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] init];
+    }
+    return _imageView;
+}
+
+@end
+
 
 
 @implementation HeaderInSectionView
@@ -189,7 +249,7 @@ static NSInteger const LabelFontSize = 10;
 
 - (void)viewLayout{
     CGFloat width = CGRectGetWidth(self.frame);
-    CGFloat height = CGRectGetHeight(self.frame) / 2;
+    CGFloat height = CGRectGetHeight(self.frame) / 2 - 10;
     _calendarLabel.frame = CGRectMake(10, 10, width - 10, height - 10);
     _stateLabel.frame = CGRectMake(10, height, width - 10, height - 10);
 }
@@ -198,6 +258,7 @@ static NSInteger const LabelFontSize = 10;
 - (UILabel *)calendarLabel{
     if (!_calendarLabel) {
         _calendarLabel = [[UILabel alloc] init];
+//        _calendarLabel.font = [UIFont  fontWithName:@"Helvetica-Bold" size:17];
         _calendarLabel.font = [UIFont systemFontOfSize:17];
         _calendarLabel.textAlignment = NSTextAlignmentLeft;
         _calendarLabel.adjustsFontSizeToFitWidth = YES;

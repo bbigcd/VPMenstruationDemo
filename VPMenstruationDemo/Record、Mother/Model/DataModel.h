@@ -21,4 +21,6 @@
 @property (nonatomic, copy) NSArray *datesOfNextForecastPeriod;
 @property (nonatomic, copy) NSArray *iconImageArray;
 @property (nonatomic, copy) NSArray *titleLabelTextArray;
+@property (nonatomic, copy) NSArray *titleLabelForBottomStateGuide;
+
 @end

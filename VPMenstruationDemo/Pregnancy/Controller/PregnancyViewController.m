@@ -10,14 +10,26 @@
 
 @interface PregnancyViewController ()
 
+@property (nonatomic, strong) UIScrollView *mainScrollView;
+
 @end
 
 @implementation PregnancyViewController
 
+#define Width [UIScreen mainScreen].bounds.size.width
+#define Height [UIScreen mainScreen].bounds.size.height
+
+- (UIScrollView *)mainScrollView{
+    if (!_mainScrollView) {
+        _mainScrollView = [[UIScrollView alloc] initWithFrame:(CGRect){0, 0, Width, Height}];
+    }
+    return _mainScrollView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor cyanColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -56,6 +56,15 @@
     self.titleLabelTextArray = @[@"Period begin",@"Period end",@"Had sex",
                                  @"Flow",@"Pain",@"Notes"];
     
+    self.titleLabelForBottomStateGuide = @[@"Menstrual period",
+                                           @"Forecast period",
+                                           @"Ovulation",
+                                           @"Ovulation day"];
+    
 }
+
+
+
+
 
 @end

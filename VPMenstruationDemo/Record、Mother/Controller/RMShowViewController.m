@@ -14,6 +14,7 @@
 #import "DataModel.h"
 #import "SetPeriodTableViewCell.h"
 #import "FlowAndPainTableViewCell.h"
+#import "CDUIPageControl.h"
 
 @interface RMShowViewController ()<
 FSCalendarDataSource,
@@ -26,12 +27,14 @@ UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableHeadView;
 @property (nonatomic, strong) UIScrollView *tableHeadScrollView;
-@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) CDUIPageControl *pageControl;
 @property (nonatomic, strong) FSCalendar *calendar;
 @property (nonatomic, strong) FllowersTableHeaderView *fllowersTableHeaderView;
 @property (nonatomic, strong) CalendarBottmLabelView *calendarBottmLabelView;
+@property (nonatomic, strong) HeaderInSectionView *headerInSectionView;
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDateFormatter *dateFormatterForHead;
 // 公历
 @property (nonatomic, strong) NSCalendar *gregorian;
 
@@ -46,6 +49,7 @@ UIScrollViewDelegate>
 
 static NSString *const SetPeriodTableViewCellID = @"SetPeriodTableViewCell";
 static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
+static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
 - (UITableView *)tableView{
     if (!_tableView) {
@@ -71,6 +75,7 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     return _tableHeadView;
 }
 
+// 嵌套的ScrollView
 - (UIScrollView *)tableHeadScrollView{
     if (!_tableHeadScrollView) {
         _tableHeadScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, Width, 340)];
@@ -84,18 +89,18 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 
 - (UIPageControl *)pageControl{
     if (!_pageControl) {
-        _pageControl = [[UIPageControl alloc] initWithFrame:(CGRect){0, 300, Width, 20}];
+        _pageControl = [[CDUIPageControl alloc] initWithFrame:(CGRect){0, 300, Width, 20}];
+        [_pageControl setupCurrentImageName:@"swift_light" indicatorImageName:@"swfit_dark"];
         _pageControl.numberOfPages = 2;
-        _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-        _pageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
         _pageControl.backgroundColor = [UIColor clearColor];
     }
     return _pageControl;
 }
 
+// 状态花
 - (FllowersTableHeaderView *)fllowersTableHeaderView{
     if (!_fllowersTableHeaderView) {
-        _fllowersTableHeaderView = [[FllowersTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, Width, 300)];
+        _fllowersTableHeaderView = [[FllowersTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, Width, 280)];
         _fllowersTableHeaderView.backgroundColor = [UIColor whiteColor];
     }
     return _fllowersTableHeaderView;
@@ -108,28 +113,39 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
         _calendar.dataSource = self;
         _calendar.delegate = self;
         _calendar.scrollEnabled = NO;
-        _calendar.allowsMultipleSelection = YES; // 开启多选中
+//        _calendar.allowsMultipleSelection = YES; // 开启多选中
         _calendar.appearance.headerMinimumDissolvedAlpha = 0.0f;
         _calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
         _calendar.appearance.headerTitleColor = [UIColor blackColor];
         // 周的显示字体形式 S M T W T F S
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
         // 非本月日期隐藏
-//        _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
+        _calendar.placeholderType = FSCalendarPlaceholderTypeFillHeadTail;
         _calendar.appearance.weekdayTextColor = [UIColor colorWithHue:0.00
                                                            saturation:0.32
                                                            brightness:0.93
                                                                 alpha:1.00];
         
         _calendar.backgroundColor = [UIColor clearColor];
+//        _calendar.appearance.todayColor = [UIColor colorWithRed:0.26 green:0.80 blue:0.86 alpha:1.00];
         
         
 //        calendar.appearance.eventSelectionColor = [UIColor whiteColor];
 //        calendar.appearance.eventOffset = CGPointMake(0, 0);
-        [_calendar registerClass:[CustomCalendarCell class] forCellReuseIdentifier:@"cell"];
+        [_calendar registerClass:[CustomCalendarCell class] forCellReuseIdentifier:FSCalendarCellID];
         
     }
     return _calendar;
+}
+
+// cell头部的日期显示，及生理状态显示
+- (HeaderInSectionView *)headerInSectionView{
+    if (!_headerInSectionView) {
+        _headerInSectionView = [[HeaderInSectionView alloc] initWithFrame:(CGRect){0, 0, Width, 75}];
+        _headerInSectionView.calendarLabel.text = [_dateFormatterForHead stringFromDate:[NSDate date]];
+        _headerInSectionView.stateLabel.text = @"During menstruation";
+    }
+    return _headerInSectionView;
 }
 
 - (void)viewDidLoad {
@@ -157,6 +173,12 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     
     // 日历底部标签
     self.calendarBottmLabelView = [[CalendarBottmLabelView alloc] initWithFrame:(CGRect){Width, 320, Width, 20}];
+    _calendarBottmLabelView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
+    _calendarBottmLabelView.view1.label.text = _model.titleLabelForBottomStateGuide[0];
+    _calendarBottmLabelView.view2.label.text = _model.titleLabelForBottomStateGuide[1];
+    _calendarBottmLabelView.view3.label.text = _model.titleLabelForBottomStateGuide[2];
+    _calendarBottmLabelView.view4.label.text = _model.titleLabelForBottomStateGuide[3];
+    
     [self.tableHeadScrollView addSubview:_calendarBottmLabelView];
     
     // 设置上下月份的按钮
@@ -181,19 +203,21 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     self.dateFormatter = [[NSDateFormatter alloc] init];
     self.dateFormatter.dateFormat = @"yyyy-MM-dd";
     
-    
+    self.dateFormatterForHead = [[NSDateFormatter alloc] init];
+    self.dateFormatterForHead.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
+    self.dateFormatterForHead.dateFormat = @"EEEE, d MMMM";
 }
 
 // 选中设置
 - (void)setupCalendar{
     
     // 选中排卵日
-    [_calendar selectDate:[_dateFormatter dateFromString:_model.datesOfOvulationDay[0]]];
+//    [_calendar selectDate:[_dateFormatter dateFromString:_model.datesOfOvulationDay[0]]];
     
     // 选中月经期
-    for (NSString *string in _model.datesOfMenstrualPeriod) {
-        [_calendar selectDate:[_dateFormatter dateFromString:string]];
-    }
+//    for (NSString *string in _model.datesOfMenstrualPeriod) {
+//        [_calendar selectDate:[_dateFormatter dateFromString:string]];
+//    }
     // 是否可以点击
 //    _calendar.allowsSelection = NO;
 
@@ -259,6 +283,7 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     NSLog(@"did select date %@",[self.dateFormatter stringFromDate:date]);
+    _headerInSectionView.calendarLabel.text = [_dateFormatterForHead stringFromDate:date];
     [self configureVisibleCells];
 }
 
@@ -266,6 +291,12 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 {
     NSLog(@"did deselect date %@",[self.dateFormatter stringFromDate:date]);
     [self configureVisibleCells];
+}
+
+- (void)calendar:(FSCalendar *)calendar boundingRectWillChange:(CGRect)bounds animated:(BOOL)animated{
+//    NSLog(@"%@", NSStringFromCGSize(bounds.size));
+    calendar.frame = (CGRect){calendar.frame.origin, bounds.size};
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - -- FSCalendarDelegateAppearance --
@@ -277,6 +308,12 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 // 多重事件底部的颜色
 - (NSArray *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance eventDefaultColorsForDate:(NSDate *)date{
     return nil;
+}
+
+
+// 选中日期的背景色
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillSelectionColorForDate:(NSDate *)date{
+    return [UIColor colorWithRed:0.26 green:0.80 blue:0.86 alpha:1.00];
 }
 
 // 日期  文字的颜色
@@ -291,6 +328,9 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     }
     // 排卵期显示颜色
     if ([_model.datesOfOvulation containsObject:dateString]) {
+        if ([_model.datesOfOvulationDay containsObject:dateString]) {
+            return [UIColor whiteColor];
+        }
         return [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
     }
     return nil;
@@ -299,7 +339,7 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
-    CustomCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:@"cell" forDate:date atMonthPosition:monthPosition];
+    CustomCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:FSCalendarCellID forDate:date atMonthPosition:monthPosition];
     return cell;
 }
 
@@ -322,10 +362,12 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 - (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     NSString *dateString = [self.dateFormatter stringFromDate:date];
-    
+//    NSLog(@"%@", NSStringFromCGSize(cell.frame.size));
     CustomCalendarCell *diyCell = (CustomCalendarCell *)cell;
 
     diyCell.eventIndicator.hidden = NO;
+    
+    diyCell.shapeLayer.hidden = NO;
     
     // 配置选中状态
     SelectionType selectionType = SelectionTypeNone;
@@ -363,14 +405,14 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     }
     
     // 默认今天和排卵日Layer隐藏 选中的Layer显示
-    diyCell.selectionLayer.hidden = NO;
+//    diyCell.selectionLayer.hidden = NO;
     diyCell.todayLayer.hidden = YES;
     diyCell.ovulationDayLayer.hidden = YES;
     
     // 今天 显示Layer
     if ([[_dateFormatter stringFromDate:[NSDate date]] isEqualToString:dateString])
     {
-        diyCell.todayLayer.hidden = NO;
+//        diyCell.todayLayer.hidden = NO;
     }
     
     // 排卵日 显示Layer
@@ -410,10 +452,7 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    HeaderInSectionView *view = [[HeaderInSectionView alloc] initWithFrame:(CGRect){0, 0, Width, 75}];
-    view.calendarLabel.text = @"Wedsday, 9 Octeober";
-    view.stateLabel.text = @"During menstruation";
-    return view;
+    return self.headerInSectionView;
 }
 
 // cell间距
@@ -428,6 +467,7 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     if (indexPath.row == 3 || indexPath.row == 4)
     {
         FlowAndPainTableViewCell *FCell = [tableView dequeueReusableCellWithIdentifier:FlowAndPainTableViewCellID forIndexPath:indexPath];
+        FCell.selectionStyle = UITableViewCellSelectionStyleNone;
         FCell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
         FCell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
         if (indexPath.row == 3) {
@@ -440,11 +480,13 @@ static NSString *const FlowAndPainTableViewCellID = @"FlowAndPainTableViewCell";
     else
     {
         SetPeriodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SetPeriodTableViewCellID forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
         cell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
         if (indexPath.row == 5) {
             cell.switchAction.hidden = YES;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         }
         return cell;
     }
