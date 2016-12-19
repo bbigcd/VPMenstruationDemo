@@ -10,9 +10,9 @@
 
 @implementation FllowersTableHeaderView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         [self setupViews];
     }
