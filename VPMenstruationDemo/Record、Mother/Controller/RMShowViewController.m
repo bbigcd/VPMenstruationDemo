@@ -15,7 +15,7 @@
 #import "SetPeriodTableViewCell.h"
 #import "FlowAndPainTableViewCell.h"
 #import "CDUIPageControl.h"
-
+#import "VPMenstrualPeriodAlgorithm.h"
 
 @interface RMShowViewController ()<
 FSCalendarDataSource,
@@ -24,7 +24,12 @@ FSCalendarDelegateAppearance,
 UITableViewDelegate,
 UITableViewDataSource,
 UIScrollViewDelegate>
-
+{
+    NSArray *rmAarry;
+    NSArray *ovulationArr;
+    NSArray *ovulationDayArr;
+    
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *tableHeadView;
 @property (nonatomic, strong) UIScrollView *tableHeadScrollView;
@@ -40,6 +45,8 @@ UIScrollViewDelegate>
 @property (nonatomic, strong) NSCalendar *gregorian;
 
 @property (nonatomic, strong) DataModel *model;
+
+
 
 @end
 
@@ -191,6 +198,9 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     
     [self setupCalendar];
     
+    rmAarry = [VPMenstrualPeriodAlgorithm vp_GetMenstrualPeriodWithDate:[NSDate date] CycleDay:25 PeriodLength:6];
+    ovulationArr = [VPMenstrualPeriodAlgorithm vp_GetOvulationWithDate:[NSDate date] CycleDay:25 PeriodLength:6];
+    ovulationDayArr = [VPMenstrualPeriodAlgorithm vp_GetOvulationDayWithDate:[NSDate date] CycleDay:25 PeriodLength:6];
     
     [self.tableView reloadData];
 }
@@ -295,7 +305,7 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 }
 
 - (void)calendar:(FSCalendar *)calendar boundingRectWillChange:(CGRect)bounds animated:(BOOL)animated{
-    NSLog(@"%@", NSStringFromCGSize(bounds.size));
+//    NSLog(@"%@", NSStringFromCGSize(bounds.size));
     calendar.frame = (CGRect){calendar.frame.origin, bounds.size};
     [self.view layoutIfNeeded];
 }
@@ -322,18 +332,36 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
     NSString *dateString = [self.dateFormatter stringFromDate:date];
     // 下一月经期显示颜色
-    if ([_model.datesOfForecastPeriod containsObject:dateString] ||
-        [_model.datesOfNextForecastPeriod containsObject:dateString] ||
-        [_model.datesOfLastForecastPeriod containsObject:dateString]) {
+    
+//    if ([_model.datesOfForecastPeriod containsObject:dateString] ||
+//        [_model.datesOfNextForecastPeriod containsObject:dateString] ||
+//        [_model.datesOfLastForecastPeriod containsObject:dateString]) {
+//        return [UIColor redColor];
+//    }
+    
+    if ([rmAarry containsObject:dateString]) {
         return [UIColor redColor];
     }
+    
+    
     // 排卵期显示颜色
-    if ([_model.datesOfOvulation containsObject:dateString]) {
-        if ([_model.datesOfOvulationDay containsObject:dateString]) {
+    
+//    if ([_model.datesOfOvulation containsObject:dateString]) {
+//        if ([_model.datesOfOvulationDay containsObject:dateString]) {
+//            return [UIColor whiteColor];
+//        }
+//        return [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
+//    }
+    
+    
+    
+    if ([ovulationArr containsObject:dateString]) {
+        if ([ovulationDayArr containsObject:dateString]) {
             return [UIColor whiteColor];
         }
         return [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
     }
+    
     return nil;
 }
 
@@ -417,8 +445,11 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     }
     
     // 排卵日 显示Layer
-    if ([_model.datesOfOvulationDay containsObject:dateString])
-    {
+//    if ([_model.datesOfOvulationDay containsObject:dateString])
+//    {
+//        diyCell.ovulationDayLayer.hidden = NO;
+//    }
+    if ([ovulationDayArr containsObject:dateString]) {
         diyCell.ovulationDayLayer.hidden = NO;
     }
     

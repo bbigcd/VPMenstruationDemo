@@ -10,6 +10,10 @@
 
 @interface VPMenstrualPeriodAlgorithm : NSObject
 
+/*
+ 存储字符串日期
+ */
+
 /**
  获取预测经期算法
 
@@ -18,7 +22,7 @@
  @param periodLength 经期持续天数
  @return 各个预测经期
  */
-+ (NSArray<NSDate *> *)vp_GetMenstrualPeriodWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength;
++ (NSArray<NSString *> *)vp_GetMenstrualPeriodWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength;
 
 /**
  获取预测排卵日算法
@@ -28,7 +32,7 @@
  @param periodLength 经期持续天数
  @return 各个排卵日
  */
-+ (NSArray<NSDate *> *)vp_GetOvulationDayWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength;
++ (NSArray<NSString *> *)vp_GetOvulationDayWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength;
 
 /**
  获取预测排卵期算法
@@ -40,7 +44,7 @@
  @param periodLength 经期持续天数
  @return 各个排卵期
  */
-+ (NSArray<NSDate *> *)vp_GetOvulationWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength;
++ (NSArray<NSString *> *)vp_GetOvulationWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength;
 
 
 

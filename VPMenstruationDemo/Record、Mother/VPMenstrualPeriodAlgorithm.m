@@ -11,10 +11,10 @@
 @implementation VPMenstrualPeriodAlgorithm
 
 // 用来计算多少个经期
-static NSInteger const MenstrualCycleTimes = 180;
+static NSInteger const MenstrualCycleTimes = 18;
 
 // 经期
-+ (NSArray<NSDate *> *)vp_GetMenstrualPeriodWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
++ (NSArray<NSString *> *)vp_GetMenstrualPeriodWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
 {
     NSMutableArray *array = [NSMutableArray array];
     if (cycleDay == 0 || periodLength == 0 || date == nil) {
@@ -22,8 +22,10 @@ static NSInteger const MenstrualCycleTimes = 180;
     }
     // 公历
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
+    gregorian.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
     // 当前月经期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     for (NSInteger j = 0; j < MenstrualCycleTimes; j ++)
     {
         for (NSInteger i = 0; i < periodLength; i ++)
@@ -33,9 +35,10 @@ static NSInteger const MenstrualCycleTimes = 180;
                                                      value:i + nextPeriod
                                                     toDate:date
                                                    options:0];
-            if (![array containsObject:nextDate])
+            NSString *string = [dateFormatter stringFromDate:nextDate];
+            if (![array containsObject:string])
             {
-                [array addObject:nextDate];
+                [array addObject:string];
             }
         }
     }
@@ -45,11 +48,16 @@ static NSInteger const MenstrualCycleTimes = 180;
 
 
 // 排卵日
-+ (NSArray<NSDate *> *)vp_GetOvulationDayWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
++ (NSArray<NSString *> *)vp_GetOvulationDayWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
 {
     NSMutableArray *array = [NSMutableArray array];
     // 公历
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    gregorian.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
     for (NSInteger j = 1; j <= MenstrualCycleTimes; j ++)
     {
         NSInteger nextPeriod = j * cycleDay;
@@ -62,9 +70,11 @@ static NSInteger const MenstrualCycleTimes = 180;
                                                      value:- 14
                                                     toDate:nextDate
                                                    options:0];
-        if (![array containsObject:ovulationDay])
+        
+        NSString *string = [dateFormatter stringFromDate:ovulationDay];
+        if (![array containsObject:string])
         {
-            [array addObject:ovulationDay];
+            [array addObject:string];
         }
     }
     
@@ -72,7 +82,7 @@ static NSInteger const MenstrualCycleTimes = 180;
 }
 
 // 排卵期
-+ (NSArray<NSDate *> *)vp_GetOvulationWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
++ (NSArray<NSString *> *)vp_GetOvulationWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
 {
     NSMutableArray *array = [NSMutableArray array];
     NSArray *ovulationDayArray = [VPMenstrualPeriodAlgorithm vp_GetOvulationDayWithDate:date CycleDay:cycleDay PeriodLength:periodLength];
@@ -85,9 +95,14 @@ static NSInteger const MenstrualCycleTimes = 180;
     
     // 公历
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    gregorian.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     for (NSInteger j = 0; j < ovulationDayArray.count; j ++)
     {
-        NSDate *ovulationDay = ovulationDayArray[j];
+        NSString *ovulationDayString = ovulationDayArray[j];
+        NSDate *ovulationDay = [dateFormatter dateFromString:ovulationDayString];
         // 前5后4+当天
         for (NSInteger i = -5; i < 5; i ++)
         {
@@ -95,9 +110,11 @@ static NSInteger const MenstrualCycleTimes = 180;
                                                      value:i
                                                     toDate:ovulationDay
                                                    options:0];
-            if (![array containsObject:nextDate])
+            
+            NSString *string = [dateFormatter stringFromDate:nextDate];
+            if (![array containsObject:string])
             {
-                [array addObject:nextDate];
+                [array addObject:string];
             }
         }
     }
