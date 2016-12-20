@@ -7,6 +7,7 @@
 //
 
 #import "PregnancyViewController.h"
+#import "PrenancyView.h"
 
 @interface PregnancyViewController ()
 
@@ -29,7 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    PrenancyView *view = [[PrenancyView alloc] init];
     
+    [self.view addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@64);
+        make.left.right.equalTo(@0);
+        make.height.equalTo(@500);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

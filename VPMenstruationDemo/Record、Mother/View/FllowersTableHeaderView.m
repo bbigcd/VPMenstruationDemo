@@ -19,6 +19,15 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupViews];
+    }
+    return self;
+}
+
 - (void)setupViews{
     [self addSubview:self.fllowersImageView];
     [self addSubview:self.dayLabel];// 布局基于这个
@@ -235,23 +244,34 @@ static NSInteger const LabelFontSize = 10;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupViews];
+        [self setupViews:frame];
     }
     return self;
 }
 
-- (void)setupViews{
+- (void)setupViews:(CGRect)frame{
     [self addSubview:self.calendarLabel];
     [self addSubview:self.stateLabel];
     
-    [self viewLayout];
+    [self viewLayout:frame];
 }
 
-- (void)viewLayout{
-    CGFloat width = CGRectGetWidth(self.frame);
-    CGFloat height = CGRectGetHeight(self.frame) / 2 - 10;
-    _calendarLabel.frame = CGRectMake(10, 10, width - 10, height - 10);
-    _stateLabel.frame = CGRectMake(10, height, width - 10, height - 10);
+- (void)viewLayout:(CGRect)frame{
+    CGFloat height = CGRectGetHeight(frame) / 2 - 10;
+    
+    [_calendarLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@10);
+        make.left.equalTo(@10);
+        make.right.equalTo(@(-10));
+        make.height.offset(height);
+    }];
+    
+    [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(@(-10));
+        make.left.equalTo(@10);
+        make.right.equalTo(@(-10));
+        make.height.offset(height);
+    }];
 }
 
 

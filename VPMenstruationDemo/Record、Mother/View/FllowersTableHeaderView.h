@@ -35,6 +35,7 @@
 @interface HeaderInSectionView : UIView
 @property (nonatomic, strong) UILabel *calendarLabel;
 @property (nonatomic, strong) UILabel *stateLabel;
+
 @end
 
 

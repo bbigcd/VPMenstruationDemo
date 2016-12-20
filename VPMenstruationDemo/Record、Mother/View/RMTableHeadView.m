@@ -28,10 +28,11 @@
 
 - (void)setupViews{
     [self addSubview:self.tableHeadScrollView];
-    [self addSubview:self.container];
     [self addSubview:self.pageControl];
+    [_tableHeadScrollView addSubview:self.container];
     [_tableHeadScrollView addSubview:self.calendar];
     [_tableHeadScrollView addSubview:self.fllowersTableHeaderView];
+    [_tableHeadScrollView addSubview:self.calendarBottmLabelView];
     [self viewLayout];
 }
 
@@ -41,7 +42,8 @@
     }];
     
     [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(@0);
+        make.left.right.equalTo(@0);
+        make.bottom.equalTo(@(-20));
         make.height.equalTo(@20);
     }];
     
@@ -50,23 +52,34 @@
         make.edges.equalTo(_tableHeadScrollView);
     }];
 
-    [_fllowersTableHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(Width, 320));
-    }];
     
     //tableHeadScrollView中的控件
-    [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(Width, 320));
-        make.top.equalTo(_fllowersTableHeaderView.mas_top);
-        make.right.equalTo(_fllowersTableHeaderView.mas_left);
+    // 1. 花
+    [_fllowersTableHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(Width);
+        make.height.equalTo(@300);
     }];
     
+    // 2. 日历
+    [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.offset(Width);
+        make.height.equalTo(@300);
+        make.top.equalTo(_fllowersTableHeaderView.mas_top);
+        make.left.equalTo(_fllowersTableHeaderView.mas_right);
+    }];
     
+    // 3. 日历底部标识
+    [_calendarBottmLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_calendar.mas_left);
+        make.right.equalTo(_calendar.mas_right);
+        make.bottom.equalTo(self);
+        make.height.equalTo(@20);
+    }];
     
     [_container mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_fllowersTableHeaderView.mas_top);
         make.left.equalTo(_fllowersTableHeaderView.mas_left);
-        make.bottom.equalTo(_fllowersTableHeaderView.mas_bottom);
+        make.bottom.equalTo(_calendar.mas_bottom);
         make.right.equalTo(_calendar.mas_right);
     }];
 }
@@ -75,6 +88,7 @@
 - (UIView *)container{
     if (!_container) {
         _container = [[UIView alloc] init];
+        _container.backgroundColor = [UIColor whiteColor];
     }
     return _container;
 }
@@ -83,8 +97,7 @@
 // 嵌套的ScrollView
 - (UIScrollView *)tableHeadScrollView{
     if (!_tableHeadScrollView) {
-        _tableHeadScrollView = [[UIScrollView alloc] init];//WithFrame:CGRectMake(0, 0, Width, 340)
-//        _tableHeadScrollView.contentSize = CGSizeMake(Width * 2, 320);
+        _tableHeadScrollView = [[UIScrollView alloc] init];
         _tableHeadScrollView.showsHorizontalScrollIndicator = NO;
         _tableHeadScrollView.pagingEnabled = YES;
     }
@@ -94,7 +107,7 @@
 // 状态花
 - (FllowersTableHeaderView *)fllowersTableHeaderView{
     if (!_fllowersTableHeaderView) {
-        _fllowersTableHeaderView = [[FllowersTableHeaderView alloc] init];//WithFrame:CGRectMake(0, 0, Width, 280)
+        _fllowersTableHeaderView = [[FllowersTableHeaderView alloc] init];
         _fllowersTableHeaderView.backgroundColor = [UIColor whiteColor];
     }
     return _fllowersTableHeaderView;
@@ -103,7 +116,7 @@
 // 日历UI设置
 - (FSCalendar *)calendar{
     if (!_calendar) {
-        _calendar = [[FSCalendar alloc] init];//WithFrame:CGRectMake(Width, 0, Width, 300)
+        _calendar = [[FSCalendar alloc] init];
         _calendar.scrollEnabled = NO;
 //        _calendar.allowsMultipleSelection = YES; // 开启多选中
         _calendar.appearance.headerMinimumDissolvedAlpha = 0.0f;
@@ -128,6 +141,13 @@
     return _calendar;
 }
 
+- (CalendarBottmLabelView *)calendarBottmLabelView{
+    if (!_calendarBottmLabelView) {
+        _calendarBottmLabelView = [[CalendarBottmLabelView alloc] init];
+        _calendarBottmLabelView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
+    }
+    return _calendarBottmLabelView;
+}
 
 - (UIPageControl *)pageControl{
     if (!_pageControl) {

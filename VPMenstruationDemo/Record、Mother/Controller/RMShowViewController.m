@@ -295,7 +295,7 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 }
 
 - (void)calendar:(FSCalendar *)calendar boundingRectWillChange:(CGRect)bounds animated:(BOOL)animated{
-//    NSLog(@"%@", NSStringFromCGSize(bounds.size));
+    NSLog(@"%@", NSStringFromCGSize(bounds.size));
     calendar.frame = (CGRect){calendar.frame.origin, bounds.size};
     [self.view layoutIfNeeded];
 }
@@ -500,7 +500,12 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 #pragma mark - -- UIScrollViewDelegate --
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    BOOL oneOrTwo = scrollView.contentOffset.x / Width;
+    NSInteger oneOrTwo;
+    if ((scrollView.contentOffset.x / Width) <= 0) {
+        oneOrTwo = 0;
+    }else{
+        oneOrTwo = 1;
+    }
     _pageControl.currentPage = oneOrTwo;
 }
 
