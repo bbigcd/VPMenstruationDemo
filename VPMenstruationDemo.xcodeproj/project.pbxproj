@@ -52,6 +52,8 @@
 		2A8EB2001E07EBBC00165D71 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EB1F51E07EBBC00165D71 /* ViewController+MASAdditions.m */; };
 		2A8EB2031E0806CD00165D71 /* RMTableHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EB2021E0806CD00165D71 /* RMTableHeadView.m */; };
 		2A8EB2061E08C0DD00165D71 /* VPMenstrualPeriodAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EB2051E08C0DD00165D71 /* VPMenstrualPeriodAlgorithm.m */; };
+		2A8EB2091E0A110800165D71 /* RMShow1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EB2081E0A110800165D71 /* RMShow1ViewController.m */; };
+		2A8EB20C1E0A31BA00165D71 /* VPCustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EB20B1E0A31BA00165D71 /* VPCustomSwitch.m */; };
 		2AD573EF1E0519A800949938 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573EE1E0519A800949938 /* DataModel.m */; };
 		2AD573F51E051AD000949938 /* SetPeriodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD573F31E051AD000949938 /* SetPeriodTableViewCell.m */; };
 		2AD573F61E051AD000949938 /* SetPeriodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD573F41E051AD000949938 /* SetPeriodTableViewCell.xib */; };
@@ -171,6 +173,10 @@
 		2A8EB2021E0806CD00165D71 /* RMTableHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTableHeadView.m; sourceTree = "<group>"; };
 		2A8EB2041E08C0DD00165D71 /* VPMenstrualPeriodAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPMenstrualPeriodAlgorithm.h; sourceTree = "<group>"; };
 		2A8EB2051E08C0DD00165D71 /* VPMenstrualPeriodAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPMenstrualPeriodAlgorithm.m; sourceTree = "<group>"; };
+		2A8EB2071E0A110800165D71 /* RMShow1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMShow1ViewController.h; sourceTree = "<group>"; };
+		2A8EB2081E0A110800165D71 /* RMShow1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMShow1ViewController.m; sourceTree = "<group>"; };
+		2A8EB20A1E0A31BA00165D71 /* VPCustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPCustomSwitch.h; sourceTree = "<group>"; };
+		2A8EB20B1E0A31BA00165D71 /* VPCustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPCustomSwitch.m; sourceTree = "<group>"; };
 		2AD573ED1E0519A800949938 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		2AD573EE1E0519A800949938 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		2AD573F21E051AD000949938 /* SetPeriodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPeriodTableViewCell.h; sourceTree = "<group>"; };
@@ -303,6 +309,8 @@
 			children = (
 				2A8EB2041E08C0DD00165D71 /* VPMenstrualPeriodAlgorithm.h */,
 				2A8EB2051E08C0DD00165D71 /* VPMenstrualPeriodAlgorithm.m */,
+				2A8EB20A1E0A31BA00165D71 /* VPCustomSwitch.h */,
+				2A8EB20B1E0A31BA00165D71 /* VPCustomSwitch.m */,
 				2A8EB1D11E07C62800165D71 /* CDUIPageControl.h */,
 				2A8EB1D21E07C62800165D71 /* CDUIPageControl.m */,
 				2AD573F11E0519C100949938 /* Controller */,
@@ -441,6 +449,8 @@
 			children = (
 				2AD573F71E051C1300949938 /* RMShowViewController.h */,
 				2AD573F81E051C1300949938 /* RMShowViewController.m */,
+				2A8EB2071E0A110800165D71 /* RMShow1ViewController.h */,
+				2A8EB2081E0A110800165D71 /* RMShow1ViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -616,10 +626,12 @@
 				2A8EB1FC1E07EBBC00165D71 /* MASViewConstraint.m in Sources */,
 				2A8EB1D61E07D72800165D71 /* UIColor+expanded.m in Sources */,
 				2A3A33D91E013364005A2E43 /* FSCalendarScopeHandle.m in Sources */,
+				2A8EB2091E0A110800165D71 /* RMShow1ViewController.m in Sources */,
 				2A3A33711E0129D0005A2E43 /* AppDelegate.m in Sources */,
 				2A3A33CD1E013364005A2E43 /* FSCalendar+Deprecated.m in Sources */,
 				2A8EB2031E0806CD00165D71 /* RMTableHeadView.m in Sources */,
 				2AD573EF1E0519A800949938 /* DataModel.m in Sources */,
+				2A8EB20C1E0A31BA00165D71 /* VPCustomSwitch.m in Sources */,
 				2A3A336E1E0129D0005A2E43 /* main.m in Sources */,
 				2A8EB1FD1E07EBBC00165D71 /* NSArray+MASAdditions.m in Sources */,
 				2A3A33D81E013364005A2E43 /* FSCalendarHeaderView.m in Sources */,

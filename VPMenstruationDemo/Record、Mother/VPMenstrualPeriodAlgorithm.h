@@ -14,6 +14,19 @@
  存储字符串日期
  */
 
+
+
+/**
+ 获取当前经期算法
+
+ @param date 选中的经期开始日
+ @param periodLength 经期持续天数
+ @return 当前经期
+ */
++ (NSArray<NSString *> *)vp_GetCurrentMenstrualPeriodWithDate:(NSDate *)date PeriodLength:(NSInteger)periodLength;
+
+
+
 /**
  获取预测经期算法
 

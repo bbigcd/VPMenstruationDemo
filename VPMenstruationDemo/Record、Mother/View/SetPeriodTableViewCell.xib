@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,10 +25,6 @@
                             <constraint firstAttribute="height" constant="22" id="YHJ-uo-yVC"/>
                         </constraints>
                     </imageView>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="on" offImage="off" translatesAutoresizingMaskIntoConstraints="NO" id="gEw-OG-Lr8">
-                        <rect key="frame" x="260" y="6" width="51" height="31"/>
-                        <color key="onTintColor" red="0.93561321496963501" green="0.60386192798614502" blue="0.60467857122421265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgc-EK-WXN">
                         <rect key="frame" x="44" y="11" width="120" height="21"/>
                         <constraints>
@@ -38,27 +34,33 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="OUn-eq-w8O">
+                        <rect key="frame" x="301" y="16" width="7" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="JYq-oc-ifg"/>
+                            <constraint firstAttribute="width" constant="7" id="UtY-1b-RwX"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="6qc-oX-q4N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="2tX-KZ-wlT"/>
-                    <constraint firstAttribute="trailing" secondItem="gEw-OG-Lr8" secondAttribute="trailing" constant="11" id="Ile-Nh-8V0"/>
+                    <constraint firstItem="OUn-eq-w8O" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ilz-LV-jYU"/>
+                    <constraint firstAttribute="trailing" secondItem="OUn-eq-w8O" secondAttribute="trailing" constant="12" id="JAz-Vc-aTE"/>
                     <constraint firstItem="Qgc-EK-WXN" firstAttribute="leading" secondItem="6qc-oX-q4N" secondAttribute="trailing" constant="11" id="JyH-Av-7Km"/>
                     <constraint firstItem="Qgc-EK-WXN" firstAttribute="centerY" secondItem="6qc-oX-q4N" secondAttribute="centerY" id="LeV-1g-UbE"/>
-                    <constraint firstItem="gEw-OG-Lr8" firstAttribute="centerY" secondItem="6qc-oX-q4N" secondAttribute="centerY" id="Qxq-dh-X8h"/>
                     <constraint firstItem="6qc-oX-q4N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fhS-86-ipT"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="arrowImageView" destination="OUn-eq-w8O" id="mja-Wx-hna"/>
                 <outlet property="iconImageView" destination="6qc-oX-q4N" id="yJH-e2-KVd"/>
-                <outlet property="switchAction" destination="gEw-OG-Lr8" id="8ND-Tm-lzn"/>
                 <outlet property="titleLabel" destination="Qgc-EK-WXN" id="tmk-fN-Pnf"/>
             </connections>
-            <point key="canvasLocation" x="-1097" y="21"/>
+            <point key="canvasLocation" x="-1158" y="27"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="off" width="55" height="25"/>
-        <image name="on" width="55" height="25"/>
+        <image name="arrow" width="6" height="12"/>
         <image name="prepare" width="21" height="21"/>
     </resources>
 </document>

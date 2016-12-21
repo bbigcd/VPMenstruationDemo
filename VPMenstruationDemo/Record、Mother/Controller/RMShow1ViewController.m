@@ -1,24 +1,23 @@
 //
-//  RMShowViewController.m
+//  RMShow1ViewController.m
 //  VPMenstruationDemo
 //
-//  Created by bbigcd on 2016/12/14.
+//  Created by bbigcd on 2016/12/21.
 //  Copyright © 2016年 bbigcd. All rights reserved.
 //
 
-#import "RMShowViewController.h"
-#import "FSCalendar.h"
+#import "RMShow1ViewController.h"
+#import "RMTableHeadView.h"
 #import "CustomCalendarCell.h"
-#import "FSCalendarExtensions.h"
+#import "FSCalendar.h"
 #import "FllowersTableHeaderView.h"
 #import "DataModel.h"
+#import "VPMenstrualPeriodAlgorithm.h"
 #import "SetPeriodTableViewCell.h"
 #import "FlowAndPainTableViewCell.h"
 #import "CDUIPageControl.h"
-#import "VPMenstrualPeriodAlgorithm.h"
-#import "VPCustomSwitch.h"
 
-@interface RMShowViewController ()<
+@interface RMShow1ViewController ()<
 FSCalendarDataSource,
 FSCalendarDelegate,
 FSCalendarDelegateAppearance,
@@ -26,34 +25,26 @@ UITableViewDelegate,
 UITableViewDataSource,
 UIScrollViewDelegate>
 {
-    NSArray *currentRMAarry;
     NSArray *rmAarry;
     NSArray *ovulationArr;
     NSArray *ovulationDayArr;
     
 }
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView *tableHeadView;
-@property (nonatomic, strong) UIScrollView *tableHeadScrollView;
-@property (nonatomic, strong) CDUIPageControl *pageControl;
-@property (nonatomic, strong) FSCalendar *calendar;
-@property (nonatomic, strong) FllowersTableHeaderView *fllowersTableHeaderView;
-@property (nonatomic, strong) CalendarBottmLabelView *calendarBottmLabelView;
 
+@property (nonatomic, strong) RMTableHeadView *rmtableHeadView;
 @property (nonatomic, strong) HeaderInSectionView *headerInSectionView;
 
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
-@property (nonatomic, strong) NSDateFormatter *dateFormatterForHead;
-// 公历
 @property (nonatomic, strong) NSCalendar *gregorian;
 
 @property (nonatomic, strong) DataModel *model;
-@property (nonatomic, assign) BOOL hasDetail;
 
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDateFormatter *dateFormatterForHead;
 
 @end
 
-@implementation RMShowViewController
+@implementation RMShow1ViewController
 
 #define Width [UIScreen mainScreen].bounds.size.width
 #define Height [UIScreen mainScreen].bounds.size.height
@@ -79,77 +70,19 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     return _tableView;
 }
 
-- (UIView *)tableHeadView{
-    if (!_tableHeadView) {
-        _tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Width, 340)];
+- (RMTableHeadView *)rmtableHeadView{
+    if (!_rmtableHeadView) {
+        _rmtableHeadView = [[RMTableHeadView alloc] init];
+        [self.view addSubview:_rmtableHeadView];
+        [_rmtableHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@64);
+            make.left.right.equalTo(@0);
+            make.height.equalTo(@340);//
+        }];
     }
-    return _tableHeadView;
+    return _rmtableHeadView;
 }
 
-// 嵌套的ScrollView
-- (UIScrollView *)tableHeadScrollView{
-    if (!_tableHeadScrollView) {
-        _tableHeadScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, Width, 340)];
-        _tableHeadScrollView.contentSize = CGSizeMake(Width * 2, 320);
-        _tableHeadScrollView.delegate = self;
-        _tableHeadScrollView.showsHorizontalScrollIndicator = NO;
-        _tableHeadScrollView.pagingEnabled = YES;
-    }
-    return _tableHeadScrollView;
-}
-
-- (UIPageControl *)pageControl{
-    if (!_pageControl) {
-        _pageControl = [[CDUIPageControl alloc] initWithFrame:(CGRect){0, 300, Width, 20}];
-        [_pageControl setupCurrentImageName:@"swift_light" indicatorImageName:@"swfit_dark"];
-        _pageControl.numberOfPages = 2;
-        _pageControl.backgroundColor = [UIColor clearColor];
-    }
-    return _pageControl;
-}
-
-// 状态花
-- (FllowersTableHeaderView *)fllowersTableHeaderView{
-    if (!_fllowersTableHeaderView) {
-        _fllowersTableHeaderView = [[FllowersTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, Width, 280)];
-        _fllowersTableHeaderView.backgroundColor = [UIColor whiteColor];
-    }
-    return _fllowersTableHeaderView;
-}
-
-// 日历UI设置
-- (FSCalendar *)calendar{
-    if (!_calendar) {
-        _calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(Width, 0, Width, 300)];
-        _calendar.dataSource = self;
-        _calendar.delegate = self;
-        _calendar.scrollEnabled = NO;
-        _calendar.allowsMultipleSelection = YES; // 开启多选中
-        _calendar.appearance.headerMinimumDissolvedAlpha = 0.0f;
-        _calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
-        _calendar.appearance.headerTitleColor = [UIColor blackColor];
-        // 周的显示字体形式 S M T W T F S
-        _calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
-        // 非本月日期隐藏
-        _calendar.placeholderType = FSCalendarPlaceholderTypeFillHeadTail;
-        _calendar.appearance.weekdayTextColor = [UIColor colorWithHue:0.00
-                                                           saturation:0.32
-                                                           brightness:0.93
-                                                                alpha:1.00];
-        
-        _calendar.backgroundColor = [UIColor clearColor];
-//        _calendar.appearance.todayColor = [UIColor colorWithRed:0.26 green:0.80 blue:0.86 alpha:1.00];
-        
-        
-//        calendar.appearance.eventSelectionColor = [UIColor whiteColor];
-//        calendar.appearance.eventOffset = CGPointMake(0, 0);
-        [_calendar registerClass:[CustomCalendarCell class] forCellReuseIdentifier:FSCalendarCellID];
-        
-    }
-    return _calendar;
-}
-
-// cell头部的日期显示，及生理状态显示
 - (HeaderInSectionView *)headerInSectionView{
     if (!_headerInSectionView) {
         _headerInSectionView = [[HeaderInSectionView alloc] initWithFrame:(CGRect){0, 0, Width, 75}];
@@ -161,37 +94,27 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.model = [[DataModel alloc] init];
-    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"today"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(rightBarButtonItemClick)];
     
-    self.tableView.tableHeaderView = self.tableHeadView;
-    [self.tableHeadView addSubview:self.tableHeadScrollView];
-    [self.tableHeadView addSubview:self.pageControl];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.rmtableHeadView.calendar.delegate = self;
+    [_rmtableHeadView.calendar registerClass:[CustomCalendarCell class] forCellReuseIdentifier:FSCalendarCellID];
+    self.model = [[DataModel alloc] init];
+    _rmtableHeadView.fllowersTableHeaderView.fllowersImageView.image = [UIImage imageNamed:@"黄体期"];
+    _rmtableHeadView.fllowersTableHeaderView.dayLabel.text = @"7";
+    _rmtableHeadView.fllowersTableHeaderView.describeLabel.text = @"Day";
+    _rmtableHeadView.fllowersTableHeaderView.stateLabel.text = @"Luteal phase";
     
-    // 花
-    [self.tableHeadScrollView addSubview:self.fllowersTableHeaderView];
-    _fllowersTableHeaderView.fllowersImageView.image = [UIImage imageNamed:@"黄体期"];
-    _fllowersTableHeaderView.dayLabel.text = @"7";
-//    _fllowersTableHeaderView.describeLabel.text = @"Day";
-    _fllowersTableHeaderView.stateLabel.text = @"Luteal phase";
-    // 日历
-    [self.tableHeadScrollView addSubview:self.calendar];
+    _rmtableHeadView.calendarBottmLabelView.view1.label.text = _model.titleLabelForBottomStateGuide[0];
+    _rmtableHeadView.calendarBottmLabelView.view2.label.text = _model.titleLabelForBottomStateGuide[1];
+    _rmtableHeadView.calendarBottmLabelView.view3.label.text = _model.titleLabelForBottomStateGuide[2];
+    _rmtableHeadView.calendarBottmLabelView.view4.label.text = _model.titleLabelForBottomStateGuide[3];
     
-    // 日历底部标签
-    self.calendarBottmLabelView = [[CalendarBottmLabelView alloc] initWithFrame:(CGRect){Width, 320, Width, 20}];
-    _calendarBottmLabelView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
-    _calendarBottmLabelView.view1.label.text = _model.titleLabelForBottomStateGuide[0];
-    _calendarBottmLabelView.view2.label.text = _model.titleLabelForBottomStateGuide[1];
-    _calendarBottmLabelView.view3.label.text = _model.titleLabelForBottomStateGuide[2];
-    _calendarBottmLabelView.view4.label.text = _model.titleLabelForBottomStateGuide[3];
-    
-    [self.tableHeadScrollView addSubview:_calendarBottmLabelView];
-    
+    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
     // 设置上下月份的按钮
     [self setupPreviousButtonAndNextButton];
     
@@ -199,19 +122,20 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     
     [self setupNSArraysDataSource];
     
-    
+    [self setupCalendar];
     
     rmAarry = [VPMenstrualPeriodAlgorithm vp_GetMenstrualPeriodWithDate:[NSDate date] CycleDay:25 PeriodLength:6];
     ovulationArr = [VPMenstrualPeriodAlgorithm vp_GetOvulationWithDate:[NSDate date] CycleDay:25 PeriodLength:6];
     ovulationDayArr = [VPMenstrualPeriodAlgorithm vp_GetOvulationDayWithDate:[NSDate date] CycleDay:25 PeriodLength:6];
-    currentRMAarry = [VPMenstrualPeriodAlgorithm vp_GetCurrentMenstrualPeriodWithDate:[NSDate date] PeriodLength:6];
-    
-    [self setupCalendar];
     
     [self.tableView reloadData];
 }
 
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 // 数据源设置
 - (void)setupNSArraysDataSource{
@@ -229,15 +153,15 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 - (void)setupCalendar{
     
     // 选中排卵日
-//    [_calendar selectDate:[_dateFormatter dateFromString:_model.datesOfOvulationDay[0]]];
+    //    [_calendar selectDate:[_dateFormatter dateFromString:_model.datesOfOvulationDay[0]]];
     
     // 选中月经期
-    for (NSString *string in currentRMAarry) {
-        [_calendar selectDate:[_dateFormatter dateFromString:string]];
-    }
+    //    for (NSString *string in _model.datesOfMenstrualPeriod) {
+    //        [_calendar selectDate:[_dateFormatter dateFromString:string]];
+    //    }
     // 是否可以点击
-//    _calendar.allowsSelection = NO;
-
+    //    _calendar.allowsSelection = NO;
+    
 }
 
 // 上下月份点击
@@ -249,8 +173,8 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     UIButton *nextButton = [self commonCreateButtonWithFrame:CGRectMake(Width - 95, 5, 55, 34)
                                                    imageName:@"right-arrow"
                                                       action:@selector(nextClicked:)];
-    [self.calendar addSubview:previousButton];
-    [self.calendar addSubview:nextButton];
+    [_rmtableHeadView.calendar addSubview:previousButton];
+    [_rmtableHeadView.calendar addSubview:nextButton];
 }
 
 - (UIButton *)commonCreateButtonWithFrame:(CGRect)frame
@@ -266,25 +190,26 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     return button;
 }
 
+
 #pragma mark - - Target actions -
 
 // 跳转到今天
 - (void)rightBarButtonItemClick{
-    [self.calendar setCurrentPage:[NSDate date] animated:YES];
+    [_rmtableHeadView.calendar setCurrentPage:[NSDate date] animated:YES];
 }
 
 // 上个月
 - (void)previousClicked:(id)sender{
-    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *currentMonth = _rmtableHeadView.calendar.currentPage;
     NSDate *previousMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
-    [self.calendar setCurrentPage:previousMonth animated:YES];
+    [_rmtableHeadView.calendar setCurrentPage:previousMonth animated:YES];
 }
 
 // 下个月
 - (void)nextClicked:(id)sender{
-    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *currentMonth = _rmtableHeadView.calendar.currentPage;
     NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
-    [self.calendar setCurrentPage:nextMonth animated:YES];
+    [_rmtableHeadView.calendar setCurrentPage:nextMonth animated:YES];
 }
 
 
@@ -311,7 +236,7 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 }
 
 - (void)calendar:(FSCalendar *)calendar boundingRectWillChange:(CGRect)bounds animated:(BOOL)animated{
-//    NSLog(@"%@", NSStringFromCGSize(bounds.size));
+    //    NSLog(@"%@", NSStringFromCGSize(bounds.size));
     calendar.frame = (CGRect){calendar.frame.origin, bounds.size};
     [self.view layoutIfNeeded];
 }
@@ -335,24 +260,37 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
 // 日期  文字的颜色
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date{
-
+    
     NSString *dateString = [self.dateFormatter stringFromDate:date];
     // 下一月经期显示颜色
+    
+    //    if ([_model.datesOfForecastPeriod containsObject:dateString] ||
+    //        [_model.datesOfNextForecastPeriod containsObject:dateString] ||
+    //        [_model.datesOfLastForecastPeriod containsObject:dateString]) {
+    //        return [UIColor redColor];
+    //    }
+    
     if ([rmAarry containsObject:dateString]) {
         return [UIColor redColor];
     }
     
+    
     // 排卵期显示颜色
+    
+    //    if ([_model.datesOfOvulation containsObject:dateString]) {
+    //        if ([_model.datesOfOvulationDay containsObject:dateString]) {
+    //            return [UIColor whiteColor];
+    //        }
+    //        return [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
+    //    }
+    
+    
+    
     if ([ovulationArr containsObject:dateString]) {
         if ([ovulationDayArr containsObject:dateString]) {
             return [UIColor whiteColor];
         }
         return [UIColor colorWithHue:0.75 saturation:0.80 brightness:0.71 alpha:1.00];
-    }
-    
-    if ([[_dateFormatter stringFromDate:[NSDate date]] isEqualToString:dateString])
-    {
-        return [UIColor whiteColor];
     }
     
     return nil;
@@ -374,9 +312,9 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
 - (void)configureVisibleCells
 {
-    [self.calendar.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull cell, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDate *date = [self.calendar dateForCell:cell];
-        FSCalendarMonthPosition position = [self.calendar monthPositionForCell:cell];
+    [self.rmtableHeadView.calendar.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull cell, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDate *date = [_rmtableHeadView.calendar dateForCell:cell];
+        FSCalendarMonthPosition position = [_rmtableHeadView.calendar monthPositionForCell:cell];
         [self configureCell:cell forDate:date atMonthPosition:position];
     }];
 }
@@ -384,34 +322,34 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 - (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     NSString *dateString = [self.dateFormatter stringFromDate:date];
-//    NSLog(@"%@", NSStringFromCGSize(cell.frame.size));
+    //    NSLog(@"%@", NSStringFromCGSize(cell.frame.size));
     CustomCalendarCell *diyCell = (CustomCalendarCell *)cell;
-
+    
     diyCell.eventIndicator.hidden = NO;
     
-//    diyCell.shapeLayer.hidden = NO;
+    diyCell.shapeLayer.hidden = NO;
     
     // 配置选中状态
     SelectionType selectionType = SelectionTypeNone;
     // 当前日期在选中日期里
-    if ([self.calendar.selectedDates containsObject:date])
+    if ([_rmtableHeadView.calendar.selectedDates containsObject:date])
     {
         // 当前日期的前一天和后一天
         NSDate *previousDate = [self.gregorian dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:date options:0];
         NSDate *nextDate = [self.gregorian dateByAddingUnit:NSCalendarUnitDay value:1 toDate:date options:0];
         
         // 当前日期和前一天、后一天也在选中日期里面 当前日期的选中类型为 SelectionTypeMiddle
-        if ([self.calendar.selectedDates containsObject:previousDate]
-            && [self.calendar.selectedDates containsObject:nextDate]) {
+        if ([_rmtableHeadView.calendar.selectedDates containsObject:previousDate]
+            && [_rmtableHeadView.calendar.selectedDates containsObject:nextDate]) {
             selectionType = SelectionTypeMiddle;
         }
         // 当前日期和前一天
-        else if ([self.calendar.selectedDates containsObject:previousDate])
+        else if ([_rmtableHeadView.calendar.selectedDates containsObject:previousDate])
         {
             selectionType = SelectionTypeRightBorder;
         }
         // 当前日期和后一天
-        else if ([self.calendar.selectedDates containsObject:nextDate])
+        else if ([_rmtableHeadView.calendar.selectedDates containsObject:nextDate])
         {
             selectionType = SelectionTypeLeftBorder;
         }
@@ -427,21 +365,21 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     }
     
     // 默认今天和排卵日Layer隐藏 选中的Layer显示
-    diyCell.selectionLayer.hidden = NO;
+    //    diyCell.selectionLayer.hidden = NO;
     diyCell.todayLayer.hidden = YES;
     diyCell.ovulationDayLayer.hidden = YES;
     
     // 今天 显示Layer
     if ([[_dateFormatter stringFromDate:[NSDate date]] isEqualToString:dateString])
     {
-        diyCell.todayLayer.hidden = NO;
+        //        diyCell.todayLayer.hidden = NO;
     }
     
     // 排卵日 显示Layer
-//    if ([_model.datesOfOvulationDay containsObject:dateString])
-//    {
-//        diyCell.ovulationDayLayer.hidden = NO;
-//    }
+    //    if ([_model.datesOfOvulationDay containsObject:dateString])
+    //    {
+    //        diyCell.ovulationDayLayer.hidden = NO;
+    //    }
     if ([ovulationDayArr containsObject:dateString]) {
         diyCell.ovulationDayLayer.hidden = NO;
     }
@@ -456,19 +394,11 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     
     diyCell.selectionType = selectionType;
     
-
+    
 }
 
 #pragma mark - -- UITableViewDelegate --
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /** 不同的行, 可以设置不同的编辑样式, 编辑样式是一个枚举类型 */
-    if (indexPath.row == 3) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleNone;
-    }
-}
+
 
 #pragma mark - -- UITableViewDataSource --
 
@@ -497,7 +427,7 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 3 + _hasDetail || indexPath.row == 4 + _hasDetail)
+    if (indexPath.row == 3 || indexPath.row == 4)
     {
         FlowAndPainTableViewCell *FCell = [tableView dequeueReusableCellWithIdentifier:FlowAndPainTableViewCellID forIndexPath:indexPath];
         FCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -516,77 +446,17 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconImageView.image = [UIImage imageNamed:_model.iconImageArray[indexPath.row]];
         cell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
-        [cell.switchBtn setSwiftOnColor:[UIColor colorWithHexString:@"ff93a2"] offColor:[UIColor colorWithHexString:@"bdbdbd"] withTarget:self action:@selector(testVpSwitch:)];
-        cell.switchBtn.tag = indexPath.row;
         if (indexPath.row == 5) {
-            cell.switchBtn.hidden = YES;
-            cell.arrowImageView.hidden = NO;
+//            cell.switchAction.hidden = YES;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         }
         return cell;
     }
 }
 
-- (void)testVpSwitch:(VPCustomSwitch *)sender {//默认tag==0
-    sender.on = !sender.on;
-    //多个开关 可用tag区分
-    switch (sender.tag) {
-        case 0:
-        {
-            break;
-        }
-        case 1:
-        {
-            break;
-        }
-        case 2:
-        {
-            if (sender.on == YES)
-            {
-                _hasDetail = YES;
-                [self.tableView beginUpdates];
-                [self insertHadSexDetail];
-                [self.tableView endUpdates];
-            }else{
-                _hasDetail = NO;
-                [self.tableView beginUpdates];
-                [self deleteHadSexDetail];
-                [self.tableView endUpdates];
-            }
-            break;
-        }
-        default:
-            break;
-    }
-    
-//    if (sender.on == YES) {
-//        NSLog(@"开");
-//    }else{
-//        NSLog(@"关");
-//    }
-}
-
-- (void)insertHadSexDetail{
-    [_model.iconImageArray insertObject:@"prepare" atIndex:3];
-    [_model.titleLabelTextArray insertObject:@"Detail" atIndex:3];
-    NSMutableArray *indexPahts = [[NSMutableArray alloc]init];
-    NSIndexPath *indexPaht = [NSIndexPath indexPathForRow:_model.iconImageArray.count - 4 inSection:0];
-    [indexPahts addObject:indexPaht];
-    [self.tableView insertRowsAtIndexPaths:[indexPahts copy] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)deleteHadSexDetail{
-    [_model.iconImageArray removeObjectAtIndex:3];
-    [_model.titleLabelTextArray removeObjectAtIndex:3];
-    NSMutableArray *indexPahts = [[NSMutableArray alloc]init];
-    NSIndexPath *indexPaht = [NSIndexPath indexPathForRow:_model.iconImageArray.count - 3 inSection:0];
-    [indexPahts addObject:indexPaht];
-    [self.tableView deleteRowsAtIndexPaths:[indexPahts copy] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"%ld", indexPath.row);
 }
 
 #pragma mark - -- UIScrollViewDelegate --
@@ -598,7 +468,8 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
     }else{
         oneOrTwo = 1;
     }
-    _pageControl.currentPage = oneOrTwo;
+    _rmtableHeadView.pageControl.currentPage = oneOrTwo;
 }
+
 
 @end

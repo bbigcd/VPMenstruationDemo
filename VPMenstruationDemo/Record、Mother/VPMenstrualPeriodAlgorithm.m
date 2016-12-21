@@ -13,6 +13,35 @@
 // 用来计算多少个经期
 static NSInteger const MenstrualCycleTimes = 18;
 
+// 当前经期
++ (NSArray<NSString *> *)vp_GetCurrentMenstrualPeriodWithDate:(NSDate *)date PeriodLength:(NSInteger)periodLength{
+    NSMutableArray *array = [NSMutableArray array];
+    if (periodLength == 0 || date == nil) {
+        return nil;
+    }
+    // 公历
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    gregorian.locale = [NSLocale localeWithLocaleIdentifier:@"en"];
+    // 当前月经期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    for (NSInteger i = 0; i < periodLength; i ++)
+    {
+        NSDate *nextDate = [gregorian dateByAddingUnit:NSCalendarUnitDay
+                                                 value:i
+                                                toDate:date
+                                               options:0];
+        NSString *string = [dateFormatter stringFromDate:nextDate];
+        if (![array containsObject:string])
+        {
+            [array addObject:string];
+        }
+    }
+    return [array copy];
+}
+
+
 // 经期
 + (NSArray<NSString *> *)vp_GetMenstrualPeriodWithDate:(NSDate *)date CycleDay:(NSInteger)cycleDay PeriodLength:(NSInteger)periodLength
 {

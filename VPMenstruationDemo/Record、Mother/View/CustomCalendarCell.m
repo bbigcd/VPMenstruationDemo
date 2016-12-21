@@ -58,11 +58,11 @@
     self.todayLayer.frame = CGRectMake(0, 0, 30, 30);
     
     CGFloat diameter1 = MIN(self.todayLayer.fs_height, self.todayLayer.fs_width);
-    self.todayLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.contentView.fs_width/2-diameter1/2, self.contentView.fs_height/2-18, diameter1, diameter1)].CGPath;
+    self.todayLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.contentView.fs_width/2-diameter1/2, self.contentView.fs_height/2-17, diameter1, diameter1)].CGPath;
     
     self.ovulationDayLayer.frame = CGRectMake(0, 0, 20, 20);
     CGFloat diameter2 = MIN(self.ovulationDayLayer.fs_height, self.ovulationDayLayer.fs_width);
-    self.ovulationDayLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.contentView.fs_width/2-diameter2/2, self.contentView.fs_height/2-13, diameter2, diameter2)].CGPath;
+    self.ovulationDayLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.contentView.fs_width/2-diameter2/2, self.contentView.fs_height/2-12, diameter2, diameter2)].CGPath;
     
     
     if (self.selectionType == SelectionTypeMiddle) {
@@ -79,7 +79,7 @@
     else if (self.selectionType == SelectionTypeSingle)
     {
 //        CGFloat diameter = MIN(self.selectionLayer.fs_height, self.selectionLayer.fs_width);
-        self.selectionLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.contentView.fs_width/2-diameter2/2 + 1, self.contentView.fs_height/2-18, diameter2, diameter2)].CGPath;
+        self.selectionLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.contentView.fs_width/2-diameter2/2 + 1, self.contentView.fs_height/2-16, diameter2, diameter2)].CGPath;
     }
 }
 

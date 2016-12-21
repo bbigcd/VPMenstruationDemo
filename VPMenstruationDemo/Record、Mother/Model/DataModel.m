@@ -50,11 +50,11 @@
                                        @"2017-01-10", @"2017-01-11", @"2017-01-12",
                                        @"2017-01-13", @"2017-01-14"];
     
-    self.iconImageArray = @[@"period-begin_end",@"period-begin_end",@"prepare",
-                            @"flow",@"pain",@"notes"];
+    self.iconImageArray = [@[@"period-begin_end",@"period-begin_end",@"prepare",
+                            @"flow",@"pain",@"notes"] mutableCopy];
     
-    self.titleLabelTextArray = @[@"Period begin",@"Period end",@"Had sex",
-                                 @"Flow",@"Pain",@"Notes"];
+    self.titleLabelTextArray = [@[@"Period begin",@"Period end",@"Had sex",
+                                 @"Flow",@"Pain",@"Notes"] mutableCopy];
     
     self.titleLabelForBottomStateGuide = @[@"Menstrual period",
                                            @"Forecast period",

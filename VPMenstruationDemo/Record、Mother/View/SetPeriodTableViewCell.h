@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class VPCustomSwitch;
 @interface SetPeriodTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *switchAction;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
+@property (nonatomic, strong) VPCustomSwitch *switchBtn;
 
 @end

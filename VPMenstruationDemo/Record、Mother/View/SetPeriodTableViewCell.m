@@ -7,13 +7,27 @@
 //
 
 #import "SetPeriodTableViewCell.h"
+#import "VPCustomSwitch.h"
 
 @implementation SetPeriodTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    [self addSubview:self.switchBtn];
+    [_switchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@(-10));
+        make.centerY.equalTo(self);
+        make.size.mas_offset(CGSizeMake(50, 25));
+    }];
+    self.arrowImageView.hidden = YES;
+}
+
+- (VPCustomSwitch *)switchBtn{
+    if (!_switchBtn) {
+        _switchBtn = [[VPCustomSwitch alloc] initWithFrame:CGRectMake(0, 0, 50, 25)];
+    }
+    return _switchBtn;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

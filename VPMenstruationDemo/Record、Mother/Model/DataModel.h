@@ -19,8 +19,8 @@
 @property (nonatomic, copy) NSArray *datesOfOvulation;// 排卵期
 @property (nonatomic, copy) NSArray *datesOfOvulationDay;// 排卵日
 @property (nonatomic, copy) NSArray *datesOfNextForecastPeriod;
-@property (nonatomic, copy) NSArray *iconImageArray;
-@property (nonatomic, copy) NSArray *titleLabelTextArray;
+@property (nonatomic, strong) NSMutableArray *iconImageArray;
+@property (nonatomic, strong) NSMutableArray *titleLabelTextArray;
 @property (nonatomic, copy) NSArray *titleLabelForBottomStateGuide;
 
 @end
