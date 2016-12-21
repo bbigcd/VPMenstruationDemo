@@ -505,8 +505,14 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
         FCell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
         if (indexPath.row == 3) {
             [FCell setBtnsNormalImage:@"flow" selectedImage:@"flow_click"];
+            [FCell setDidSelectedBtnBlock:^(NSInteger level) {
+                NSLog(@"%@", _model.menstrualFlowRemindArray[level]);
+            }];
         }else{
             [FCell setBtnsNormalImage:@"pain" selectedImage:@"pain-_click"];
+            [FCell setDidSelectedBtnBlock:^(NSInteger level) {
+                NSLog(@"%@", _model.menstrualPainRemindArray[level]);
+            }];
         }
         return FCell;
     }
@@ -518,7 +524,10 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
         cell.titleLabel.text = _model.titleLabelTextArray[indexPath.row];
         [cell.switchBtn setSwiftOnColor:[UIColor colorWithHexString:@"ff93a2"] offColor:[UIColor colorWithHexString:@"bdbdbd"] withTarget:self action:@selector(testVpSwitch:)];
         cell.switchBtn.tag = indexPath.row;
-        if (indexPath.row == 5) {
+        if (indexPath.row == 5 + _hasDetail || indexPath.row == 3) {
+            if (indexPath.row == 3) {
+                cell.hasSexDetailLabel.hidden = NO;
+            }
             cell.switchBtn.hidden = YES;
             cell.arrowImageView.hidden = NO;
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
@@ -586,7 +595,11 @@ static NSString *const FSCalendarCellID = @"FSCalendarCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"%ld", indexPath.row);
+    if (_hasDetail) {
+        if (indexPath.row == 3) {
+            NSLog(@"has sex");
+        }
+    }
 }
 
 #pragma mark - -- UIScrollViewDelegate --

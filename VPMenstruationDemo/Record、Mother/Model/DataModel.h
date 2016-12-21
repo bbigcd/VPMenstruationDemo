@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSMutableArray *iconImageArray;
 @property (nonatomic, strong) NSMutableArray *titleLabelTextArray;
 @property (nonatomic, copy) NSArray *titleLabelForBottomStateGuide;
-
+@property (nonatomic, copy) NSArray *menstrualFlowRemindArray;
+@property (nonatomic, copy) NSArray *menstrualPainRemindArray;
 @end

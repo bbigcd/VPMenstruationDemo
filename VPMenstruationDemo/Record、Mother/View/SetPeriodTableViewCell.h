@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (nonatomic, strong) VPCustomSwitch *switchBtn;
+@property (weak, nonatomic) IBOutlet UILabel *hasSexDetailLabel;
 
 @end

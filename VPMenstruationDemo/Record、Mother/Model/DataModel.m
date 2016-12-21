@@ -61,6 +61,17 @@
                                            @"Ovulation",
                                            @"Ovulation day"];
     
+    self.menstrualFlowRemindArray = @[@"月经量很少",
+                                      @"月经量偏少",
+                                      @"月经量正常",
+                                      @"月经量偏多",
+                                      @"月经量很多"];
+    
+    self.menstrualPainRemindArray = @[@"基本不痛",
+                                      @"轻微痛",
+                                      @"很痛",
+                                      @"非常痛",
+                                      @"痛死了"];
 }
 
 

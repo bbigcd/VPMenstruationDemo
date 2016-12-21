@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, MenstrualReactionState) {
 @property (weak, nonatomic) IBOutlet UIButton *stateBtn4;
 @property (weak, nonatomic) IBOutlet UIButton *stateBtn5;
 
+@property (nonatomic, copy) void(^didSelectedBtnBlock) (NSInteger level);
 
 // 点击方法
 - (IBAction)stateBtnsAction:(id)sender;
